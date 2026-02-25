@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprzedaż Naturalna w MLM — Przewodnik</title>
+<meta name="description" content="Kompletny przewodnik po Sprzedaży Naturalnej w MLM i aromaterapii — na podstawie metodologii Fryderyka Karzełka. Komunikacja, DISK, diagnoza, język korzyści.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Open Graph -->
+<meta property="og:title" content="Sprzedaż Naturalna w MLM — Przewodnik">
+<meta property="og:description" content="Kompletny przewodnik po Sprzedaży Naturalnej w MLM i aromaterapii — komunikacja, DISK, diagnoza, język korzyści.">
+<meta property="og:image" content="https://emilia-chodorowska.github.io/prezentacje/sprzedaz-naturalna/social-preview.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emilia-chodorowska.github.io/prezentacje/sprzedaz-naturalna/">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sprzedaż Naturalna w MLM — Przewodnik">
+<meta name="twitter:description" content="Kompletny przewodnik po Sprzedaży Naturalnej w MLM i aromaterapii.">
+<meta name="twitter:image" content="https://emilia-chodorowska.github.io/prezentacje/sprzedaz-naturalna/social-preview.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.css">
+<style>
+:root {
+  --primary: #7BA07E;
+  --primary-soft: #D4E6D5;
+  --primary-dark: #5A7F5D;
+  --secondary: #D4A843;
+  --secondary-soft: #FEF9E7;
+  --accent: #7E6BAD;
+  --accent-soft: #EDE8F5;
+  --text: #1e293b;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --bg: #ffffff;
+  --bg-soft: #f8faf8;
+  --border: #e2e8f0;
+}
+.reveal, .reveal * { font-family: "Inter", sans-serif; }
+.reveal { background: var(--bg); color: var(--text); font-size: 28px; }
+.reveal .slides { text-align: left; }
+.reveal .slides section { padding: 1.8em 2.5em 1.5em; box-sizing: border-box; height: 100% !important; display: flex !important; flex-direction: column !important; align-items: flex-start; justify-content: center !important; }
+
+/* Title & Section slides */
+.reveal .slides section.slide-title,
+.reveal .slides section.slide-section {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Typography */
+.reveal h1 { font-size: 2.4em; font-weight: 700; letter-spacing: -0.035em; color: var(--text); margin: 0 0 0.2em; line-height: 1.15; }
+.reveal h2 { font-size: 1.55em; font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin: 0 0 0.15em; line-height: 1.2; }
+.reveal h3 { font-size: 0.75em; font-weight: 600; color: var(--primary); margin: 0 0 0.3em; line-height: 1.3; }
+.reveal p, .reveal .body-text { font-size: 0.68em; color: var(--text-secondary); line-height: 1.65; margin: 0 0 0.5em; }
+.reveal li { font-size: 0.62em; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.3em; }
+.reveal ul, .reveal ol { margin: 0; padding-left: 1.2em; }
+
+/* Logo */
+.slide-logo { height: 26px; opacity: 0.6; margin-bottom: 0.6em; }
+.slide-title .slide-logo { height: 34px; opacity: 0.8; }
+
+/* Pill */
+.pill { display: inline-block; background: var(--primary-soft); color: var(--primary-dark); font-size: 0.48em; font-weight: 600; padding: 0.35em 1em; border-radius: 20px; margin-bottom: 0.8em; letter-spacing: 0.02em; }
+
+/* Sub */
+.sub { font-size: 0.62em; color: var(--text-muted); margin-top: -0.1em; margin-bottom: 0.8em; line-height: 1.5; }
+
+/* Byline */
+.byline { font-size: 0.55em; color: var(--text-muted); margin-top: 0.3em; font-weight: 400; }
+
+/* Cards */
+.cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; width: 100%; }
+.cards-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; width: 100%; }
+.cards-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8em; width: 100%; }
+.card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.2em 1.1em; }
+.card-soft { background: var(--primary-soft); border: 1px solid transparent; border-radius: 12px; padding: 1.2em 1.1em; }
+.card-accent { background: var(--accent-soft); border: 1px solid transparent; border-radius: 12px; padding: 1.2em 1.1em; }
+.card-secondary { background: var(--secondary-soft); border: 1px solid transparent; border-radius: 12px; padding: 1.2em 1.1em; }
+.card h3 { margin-bottom: 0.4em; }
+.card p, .card-soft p, .card-accent p, .card-secondary p { font-size: 0.58em; margin: 0; color: var(--text-secondary); line-height: 1.55; }
+
+/* Table */
+.reveal table { width: 100%; border-collapse: collapse; font-size: 0.58em; border-radius: 12px; overflow: hidden; border: none; }
+.reveal table th { background: var(--bg-soft); font-weight: 600; padding: 14px 20px; text-align: left; border-bottom: 2px solid var(--border); color: var(--text); }
+.reveal table td { padding: 14px 20px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+.reveal table tr:last-child td { border-bottom: none; }
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; margin: 0; width: 100%; }
+.checklist li { font-size: 0.62em; padding: 0.35em 0; padding-left: 1.6em; position: relative; color: var(--text-secondary); line-height: 1.6; }
+.checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--primary); font-weight: 700; font-size: 1.1em; }
+
+/* Steps */
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; width: 100%; }
+.steps li { font-size: 0.62em; padding: 0.4em 0 0.4em 2.2em; position: relative; color: var(--text-secondary); line-height: 1.6; counter-increment: step; }
+.steps li::before { content: counter(step); position: absolute; left: 0; width: 1.6em; height: 1.6em; background: var(--primary-soft); color: var(--primary-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; top: 0.35em; }
+
+/* Accent box */
+.accent-box { background: var(--primary-soft); border-radius: 12px; padding: 0.7em 1.1em; width: 100%; box-sizing: border-box; }
+.accent-box p { font-size: 0.58em; color: var(--text); margin: 0; line-height: 1.6; }
+.accent-box-secondary { background: var(--secondary-soft); border-radius: 12px; padding: 0.7em 1.1em; width: 100%; box-sizing: border-box; }
+.accent-box-secondary p { font-size: 0.58em; color: var(--text); margin: 0; line-height: 1.6; }
+.accent-box-accent { background: var(--accent-soft); border-radius: 12px; padding: 0.7em 1.1em; width: 100%; box-sizing: border-box; }
+.accent-box-accent p { font-size: 0.58em; color: var(--text); margin: 0; line-height: 1.6; }
+
+/* Quote */
+.quote-block { text-align: center; max-width: 85%; margin: 0 auto; }
+.quote-block .quote-text { font-size: 0.78em; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 0.5em; }
+.quote-block .quote-author { font-size: 0.52em; color: var(--text-muted); font-weight: 500; }
+
+/* Stats */
+.stats { display: flex; gap: 2em; justify-content: center; width: 100%; }
+.stat { text-align: center; }
+.stat .stat-number { font-size: 2em; font-weight: 700; color: var(--primary); line-height: 1.1; }
+.stat .stat-label { font-size: 0.52em; color: var(--text-muted); margin-top: 0.2em; }
+
+/* Split */
+.reveal .slides section.slide-split { padding: 0; flex-direction: row !important; justify-content: flex-start !important; align-items: stretch !important; }
+.split-text { width: 60%; padding: 1.5em 1.5em 1.5em 2.5em; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; box-sizing: border-box; }
+.split-media { width: 40%; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; padding: 2em; box-sizing: border-box; }
+.reveal .slides section.slide-split-reverse { padding: 0; flex-direction: row !important; justify-content: flex-start !important; align-items: stretch !important; }
+.slide-split-reverse .split-text { padding: 1.5em 2.5em 1.5em 1.5em; order: 2; }
+.slide-split-reverse .split-media { order: 1; }
+
+/* Split media content */
+.split-media .quote-block { text-align: center; }
+.split-media .quote-block .quote-text { font-size: 0.72em; color: var(--text); }
+.split-media .accent-box, .split-media .accent-box-secondary, .split-media .accent-box-accent { background: rgba(255,255,255,0.7); }
+
+/* Bg variants */
+.bg-soft { background: var(--bg-soft) !important; }
+
+/* Section slide special */
+.slide-section { background: var(--primary-soft) !important; }
+.slide-section h2 { color: var(--primary-dark); }
+.slide-section .sub { color: var(--primary); }
+
+/* Gold highlight */
+.gold { color: var(--secondary); font-weight: 600; }
+/* Purple highlight */
+.purple { color: var(--accent); font-weight: 600; }
+/* Primary highlight */
+.green { color: var(--primary-dark); font-weight: 600; }
+
+/* Emoji in cards */
+.card-emoji { font-size: 1.5em; margin-bottom: 0.3em; display: block; }
+
+/* Flex helper */
+.flex-grow { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; }
+
+/* Content spacer */
+.content-area { flex: 1; display: flex; flex-direction: column; justify-content: center; width: 100%; gap: 0.6em; }
+
+/* Small text */
+.small { font-size: 0.48em; color: var(--text-muted); }
+
+/* Debug mode */
+.debug-mode .slide-logo,
+.debug-mode .pill,
+.debug-mode .card,
+.debug-mode .card-soft,
+.debug-mode .card-accent,
+.debug-mode .card-secondary,
+.debug-mode .accent-box,
+.debug-mode .accent-box-secondary,
+.debug-mode .accent-box-accent,
+.debug-mode table { outline: 2px dashed rgba(255,0,0,0.4) !important; }
+.debug-mode .reveal .slides section { outline: 2px solid rgba(255,0,0,0.2) !important; }
+.debug-mode .reveal .slides section::after {
+  content: '';
+  position: absolute;
+  top: 2.5em; left: 4em; right: 4em; bottom: 2em;
+  border: 1px dashed rgba(255,0,0,0.3);
+  pointer-events: none;
+}
+
+/* Mobile landing */
+.mobile-landing {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  padding: 0;
+}
+.mobile-landing .slide-scroll {
+  flex: 1;
+  width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mobile-landing .slide-scroll img {
+  width: 100%;
+  display: block;
+}
+.mobile-landing.dismissed { display: none !important; }
+@media screen and (max-aspect-ratio: 4/3) {
+  .mobile-landing:not(.dismissed) { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-landing">
+  <div class="slide-scroll">
+    <img src="slides/slide-01.jpg" alt="Slajd 1" />
+    <img src="slides/slide-02.jpg" alt="Slajd 2" />
+    <img src="slides/slide-03.jpg" alt="Slajd 3" />
+    <img src="slides/slide-04.jpg" alt="Slajd 4" />
+    <img src="slides/slide-05.jpg" alt="Slajd 5" />
+    <img src="slides/slide-06.jpg" alt="Slajd 6" />
+    <img src="slides/slide-07.jpg" alt="Slajd 7" />
+    <img src="slides/slide-08.jpg" alt="Slajd 8" />
+    <img src="slides/slide-09.jpg" alt="Slajd 9" />
+    <img src="slides/slide-10.jpg" alt="Slajd 10" />
+    <img src="slides/slide-11.jpg" alt="Slajd 11" />
+    <img src="slides/slide-12.jpg" alt="Slajd 12" />
+    <img src="slides/slide-13.jpg" alt="Slajd 13" />
+    <img src="slides/slide-14.jpg" alt="Slajd 14" />
+    <img src="slides/slide-15.jpg" alt="Slajd 15" />
+    <img src="slides/slide-16.jpg" alt="Slajd 16" />
+    <img src="slides/slide-17.jpg" alt="Slajd 17" />
+    <img src="slides/slide-18.jpg" alt="Slajd 18" />
+    <img src="slides/slide-19.jpg" alt="Slajd 19" />
+    <img src="slides/slide-20.jpg" alt="Slajd 20" />
+    <img src="slides/slide-21.jpg" alt="Slajd 21" />
+    <img src="slides/slide-22.jpg" alt="Slajd 22" />
+    <img src="slides/slide-23.jpg" alt="Slajd 23" />
+    <img src="slides/slide-24.jpg" alt="Slajd 24" />
+  </div>
+</div>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ====== SLIDE 0: TITLE ====== -->
+<section class="slide-title">
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">Sprzedaż Naturalna</div>
+  <h1>Sprzedaż Naturalna<br>w MLM i aromaterapii</h1>
+  <div class="byline">Kompletny przewodnik — na podstawie metodologii Fryderyka Karzełka</div>
+</section>
+
+<!-- ====== SLIDE 1: SECTION — FUNDAMENTY ====== -->
+<section class="slide-section">
+  <div class="pill">1 · Fundamenty</div>
+  <h2>Fundamenty metodologii</h2>
+  <div class="sub">Czym jest Sprzedaż Naturalna i dlaczego zmienia zasady gry w network marketingu</div>
+</section>
+
+<!-- ====== SLIDE 2: CENTER — CZYM JEST ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">1 · Fundamenty</div>
+  <h2>Czym jest Sprzedaż Naturalna?</h2>
+  <div class="sub">Nie sprzedajesz olejków. Rozwiązujesz problem.</div>
+  <div class="content-area">
+    <div class="accent-box" style="margin-bottom: 0.8em;">
+      <p><strong>Definicja:</strong> Sprzedaż to nie przekonywanie, lecz rozwiązywanie problemu drugiego człowieka. Profesjonalista stawia diagnozę, a dopiero potem proponuje rozwiązanie.</p>
+    </div>
+    <div class="cards-2">
+      <div class="card">
+        <h3>Dlaczego to pasuje do MLM?</h3>
+        <p>Klient często <strong>nie wie</strong>, że potrzebuje Twojego produktu. Nikt nie budzi się z myślą „muszę kupić olejek z kadzidłowca". Musisz najpierw zrozumieć jego sytuację.</p>
+      </div>
+      <div class="card">
+        <h3>Produkt wymagający edukacji</h3>
+        <p>Aromaterapia klasy terapeutycznej to <strong>nie perfumeria</strong>. Musisz wytłumaczyć różnicę — a żeby to zrobić dobrze, musisz wiedzieć, co klienta interesuje.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 3: LEFT — WIRUSY MENTALNE ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">1 · Fundamenty</div>
+  <h2>Wirusy mentalne networkerki</h2>
+  <div class="sub">Przekonania, które Cię sabotują, zanim otworzysz usta</div>
+  <div class="content-area">
+    <ul class="checklist">
+      <li><strong>„Nie chcę być nachalna"</strong> — nachalność to mówienie bez słuchania. Jeśli słuchasz i diagnozujesz — jesteś pomocna</li>
+      <li><strong>„Olejki są za drogie"</strong> — cena nie jest problemem, gdy klient rozumie wartość. Problem: brak diagnozy</li>
+      <li><strong>„Ludzie nie lubią sprzedawców"</strong> — nie lubią ZŁYCH sprzedawców. Dobry = przewodnik, który pomaga</li>
+      <li><strong>„MLM to piramida"</strong> — blokuje Twoją autentyczność. Autentyczność = fundament zaufania</li>
+      <li><strong>„Muszę znać się na wszystkim"</strong> — klient nie potrzebuje encyklopedii. Potrzebuje kogoś, kto wysłucha</li>
+    </ul>
+    <div class="accent-box-secondary" style="margin-top: 0.5em;">
+      <p><strong>Lekarstwo:</strong> Zmień definicję sprzedaży w swojej głowie. Sprzedaż = pomaganie ludziom w podejmowaniu dobrych decyzji.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 4: CENTER — 3 FILARY ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">1 · Fundamenty</div>
+  <h2>3 filary Sprzedaży Naturalnej</h2>
+  <div class="content-area">
+    <div class="cards-3">
+      <div class="card-soft">
+        <h3>Perfekcyjna komunikacja</h3>
+        <p>Pytania otwarte, słuchanie aktywne, milczenie, parafraza. <strong>Nie gadka</strong> — umiejętność wyciągania informacji i budowania procesu myślowego klienta.</p>
+      </div>
+      <div class="card-secondary">
+        <h3>Zaufanie</h3>
+        <p>Emocjonalne konto bankowe — każda interakcja to wpłata lub wypłata. <strong>Wpłaty:</strong> słuchanie, empatia, dotrzymywanie słowa. <strong>Wypłaty:</strong> naciskanie, manipulacja.</p>
+      </div>
+      <div class="card-accent">
+        <h3>Język korzyści</h3>
+        <p>Nie mów o cechach produktu. Mów o tym, co klient <strong>zyska</strong>. Ale uwaga — język korzyści wymaga wcześniejszej diagnozy!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 5: SPLIT — KONTO EMOCJONALNE ====== -->
+<section class="slide-split">
+  <div class="split-text">
+    <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+    <div class="pill">1 · Fundamenty</div>
+    <h2>Konto emocjonalne</h2>
+    <div class="sub">Każda interakcja to wpłata lub wypłata z konta zaufania</div>
+    <div class="content-area">
+      <table>
+        <tr><th style="color: var(--primary);">Wpłaty ✓</th><th style="color: #c0392b;">Wypłaty ✗</th></tr>
+        <tr><td>Słuchanie z uwagą</td><td>Mówienie tylko o produkcie</td></tr>
+        <tr><td>Dotrzymywanie słowa</td><td>Niedotrzymanie obietnic</td></tr>
+        <tr><td>Zainteresowanie życiem klienta</td><td>Kontakt tylko gdy chcesz sprzedać</td></tr>
+        <tr><td>Dzielenie się wartościową wiedzą</td><td>Ciągłe stories o promocjach</td></tr>
+        <tr><td>Empatia i zrozumienie</td><td>Ignorowanie wątpliwości</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="split-media">
+    <div class="quote-block">
+      <div class="quote-text">„Jeśli nie masz zaufania do diagnozy, nie masz go także do recepty."</div>
+      <div class="quote-author">— Stephen R. Covey</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 6: SECTION — KLIENT ====== -->
+<section class="slide-section">
+  <div class="pill">2 · Klient</div>
+  <h2>Klient i komunikacja</h2>
+  <div class="sub">Tryb awaryjny, Dekalog Komunikacji i sztuka zadawania pytań</div>
+</section>
+
+<!-- ====== SLIDE 7: LEFT — TRYB AWARYJNY ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">2 · Klient</div>
+  <h2>Tryb awaryjny klienta</h2>
+  <div class="sub">Kiedy mózg limbiczny przejmuje kontrolę — klient walczy, ucieka lub zamiera</div>
+  <div class="content-area">
+    <div class="cards-2" style="margin-bottom: 0.6em;">
+      <div class="card">
+        <h3>Co go wywołuje?</h3>
+        <p>• Presja czasowa i sztuczne deadliny<br>• Za szybka prezentacja (brak zaufania)<br>• Ignorowanie emocji i wątpliwości<br>• Techniki manipulacyjne<br>• Brak poczucia kontroli u klienta</p>
+      </div>
+      <div class="card">
+        <h3>Jak się objawia?</h3>
+        <p>• <strong>Wycofanie:</strong> „muszę się zastanowić"<br>• <strong>Agresja:</strong> „to jest piramida!"<br>• <strong>Milczenie:</strong> zamknięcie się<br>• <strong>Ucieczka:</strong> odkładanie, nieprzychodzenie</p>
+      </div>
+    </div>
+    <div class="accent-box-accent">
+      <p><strong>Zasada:</strong> Problemy nie zaczynają się na końcu rozmowy. Zaczynają się wcześniej — gdy nie rozpoznasz stylu klienta, jego emocji lub momentu wejścia w tryb awaryjny.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 8: SPLIT-REVERSE — TRYB AWARYJNY MLM ====== -->
+<section class="slide-split-reverse">
+  <div class="split-media" style="background: var(--accent-soft);">
+    <div style="padding: 1em;">
+      <div class="accent-box" style="background: rgba(255,255,255,0.8); margin-bottom: 0.8em;">
+        <p><strong>Scenariusz 1 — kawa z koleżanką</strong><br><br>Wspomina, że dziecko ciągle choruje. Ty od razu: <em>„Musisz spróbować On Guard!"</em><br><br>Koleżanka uśmiecha się grzecznie i… nigdy nie wraca do tematu.</p>
+      </div>
+      <div class="accent-box" style="background: rgba(255,255,255,0.8);">
+        <p><strong>Scenariusz 2 — social media</strong><br><br>Ktoś komentuje post o stresie. Ty w DM: <em>„Mogę opowiedzieć o genialnych olejkach!"</em><br><br>Brak odpowiedzi. Tryb awaryjny.</p>
+      </div>
+    </div>
+  </div>
+  <div class="split-text">
+    <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+    <div class="pill">2 · Klient</div>
+    <h2>Tryb awaryjny w MLM</h2>
+    <div class="sub">Jak NIE wywołać trybu awaryjnego</div>
+    <div class="content-area">
+      <ul class="checklist">
+        <li>Nie rzucaj się z produktem, gdy ktoś dzieli się problemem</li>
+        <li>Pytaj zamiast proponować: <em>„Jak sobie z tym radzisz?"</em></li>
+        <li>Poczekaj, aż klient SAM wyrazi zainteresowanie</li>
+        <li>Buduj rozmowę, nie sprzedaż</li>
+        <li>Sprawdź swój „zbiornik emocji" przed każdym kontaktem</li>
+      </ul>
+      <div class="accent-box-secondary" style="margin-top: 0.5em;">
+        <p><strong>Jeśli jesteś w trybie</strong> „muszę zrobić obrót do końca miesiąca" — klient to poczuje. Lepiej zrób przerwę.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 9: CENTER — DEKALOG ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">2 · Klient</div>
+  <h2>Dekalog Komunikacji</h2>
+  <div class="sub">10 zasad fundamentalnych — naucz się ich na pamięć</div>
+  <div class="content-area">
+    <div class="cards-2x2">
+      <div class="card-soft">
+        <h3>1–3: Cisza, Słuchanie, Pytania</h3>
+        <p>Milcz po pytaniu (5–10 sek.). Słuchaj aktywnie — nie przygotowuj odpowiedzi. Pytaj otwarcie: co, jak, dlaczego.</p>
+      </div>
+      <div class="card-secondary">
+        <h3>4–5: Pauzy i Parafraza</h3>
+        <p>Rób pauzy przed ważnymi pytaniami. Parafrazuj: <em>„Czy ja dobrze rozumiem, że…?"</em> — to buduje zaufanie.</p>
+      </div>
+      <div class="card-accent">
+        <h3>6–8: Nie kłóć się, Nie zakładaj, Nie przerywaj</h3>
+        <p>Nigdy nie wygrasz sporu z klientem. Nie decyduj za niego. Każde przerwanie = wypłata z konta.</p>
+      </div>
+      <div class="card">
+        <h3>9–10: Nie oceniaj + „Dobrze rozumiem?"</h3>
+        <p>Klient używa olejków z drogerii? Nie kręć oczami. Wróć do kotwicy: <em>„Czy ja panią dobrze rozumiem?"</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 10: SPLIT — PYTANIA OTWARTE ====== -->
+<section class="slide-split">
+  <div class="split-text">
+    <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+    <div class="pill">2 · Klient</div>
+    <h2>Pytania otwarte</h2>
+    <div class="sub">Zamień zamknięte pytania na otwarte — i zmień przebieg rozmowy</div>
+    <div class="content-area">
+      <table>
+        <tr><th style="color: #c0392b;">Zamknięte ✗</th><th style="color: var(--primary);">Otwarte ✓</th></tr>
+        <tr><td>Interesujesz się olejkami?</td><td>Co wiesz o olejkach eterycznych?</td></tr>
+        <tr><td>Chcesz spróbować?</td><td>Jak wyobrażasz sobie naturalne wsparcie zdrowia?</td></tr>
+        <tr><td>Masz problemy ze snem?</td><td>Jak wygląda u Ciebie wieczorna rutyna?</td></tr>
+        <tr><td>Kupujesz naturalne produkty?</td><td>Jakie naturalne rozwiązania do tej pory próbowałaś?</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="split-media">
+    <div class="quote-block">
+      <div class="quote-text">Pytanie otwarte uruchamia proces myślowy klienta. Zamknięte — zamyka go.</div>
+      <div class="quote-author">— Fryderyk Karzełek</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 11: SECTION — ROZMÓWCA ====== -->
+<section class="slide-section">
+  <div class="pill">3 · Rozmówca</div>
+  <h2>Rozpoznaj rozmówcę</h2>
+  <div class="sub">Sytuacja wyjściowa i profile DISK — klucz do dopasowania komunikacji</div>
+</section>
+
+<!-- ====== SLIDE 12: CENTER — 3 SYTUACJE ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">3 · Rozmówca</div>
+  <h2>3 sytuacje wyjściowe</h2>
+  <div class="sub">W jakiej sytuacji spotykasz potencjalnego klienta?</div>
+  <div class="content-area">
+    <div class="cards-3">
+      <div class="card-soft">
+        <h3>„Na tak"</h3>
+        <p>Klient jest otwarty i ciekawy. Przyszedł z polecenia lub sam szukał. <strong>Nie spiesz się!</strong> Nadal diagnozuj — ale tempo może być szybsze.</p>
+      </div>
+      <div class="card" style="border-color: #c0392b;">
+        <h3 style="color: #c0392b;">„Na nie!"</h3>
+        <p>Tryb awaryjny od startu. Złe doświadczenia, anty-MLM. <strong>Nie walcz.</strong> Pytaj: <em>„Miała pani doświadczenie, które nie było najlepsze?"</em> Słuchaj.</p>
+      </div>
+      <div class="card-secondary">
+        <h3>„Na nie?"</h3>
+        <p><strong>Najczęstsza w MLM.</strong> Klient nie wie — nie zna produktu ani Ciebie. Cel: umówić spotkanie, nie sprzedawać przez telefon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 13: LEFT — PROFILE DISK ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">3 · Rozmówca</div>
+  <h2>Profile zachowań DISK</h2>
+  <div class="sub">4 typy rozmówców — rozpoznaj i dopasuj komunikację</div>
+  <div class="content-area">
+    <div class="cards-2x2">
+      <div class="card" style="border-left: 3px solid #c0392b;">
+        <h3 style="color: #c0392b;">D — Dominujący</h3>
+        <p>Szybki, konkretny, decyzyjny. Chce wiedzieć „co z tego mam". Nie znosie długich prezentacji i niezdecydowania.</p>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--secondary);">
+        <h3 style="color: var(--secondary);">I — Inicjatywny</h3>
+        <p>Gadatliwy, entuzjastyczny, spontaniczny. Lubi nowości, ludzi, społeczność. Kupuje na emocjach i referencjach.</p>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--primary);">
+        <h3>S — Stały</h3>
+        <p>Spokojny, lojalny, cierpliwy. Potrzebuje czasu. Ceni bezpieczeństwo, sprawdzone rozwiązania i relację.</p>
+      </div>
+      <div class="card" style="border-left: 3px solid var(--accent);">
+        <h3 style="color: var(--accent);">K — Krytyczny</h3>
+        <p>Analityczny, dokładny, potrzebuje danych. Pyta o badania, certyfikaty, testy. Decyduje powoli i logicznie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 14: SPLIT-REVERSE — DISK W AROMATERAPII ====== -->
+<section class="slide-split-reverse">
+  <div class="split-media">
+    <div style="padding: 0.5em;">
+      <div class="accent-box" style="background: rgba(255,255,255,0.8); margin-bottom: 0.6em;">
+        <p><strong style="color: #c0392b;">D:</strong> <em>„Ten olejek rozwiązuje problem X. Kosztuje Y. Efekt w Z dni."</em></p>
+      </div>
+      <div class="accent-box" style="background: rgba(255,255,255,0.8); margin-bottom: 0.6em;">
+        <p><strong style="color: var(--secondary);">I:</strong> <em>„Dołączasz do grupy kobiet, które wspierają się nawzajem. A przy okazji — najlepsze olejki na świecie."</em></p>
+      </div>
+      <div class="accent-box" style="background: rgba(255,255,255,0.8); margin-bottom: 0.6em;">
+        <p><strong style="color: var(--primary-dark);">S:</strong> <em>„Miliony rodzin ich używa od 10 lat. Zacznij od jednego. Bez presji."</em></p>
+      </div>
+      <div class="accent-box" style="background: rgba(255,255,255,0.8);">
+        <p><strong style="color: var(--accent);">K:</strong> <em>„Każda partia przechodzi 8 testów, w tym chromatografię gazową. Mogę pokazać raport."</em></p>
+      </div>
+    </div>
+  </div>
+  <div class="split-text">
+    <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+    <div class="pill">3 · Rozmówca</div>
+    <h2>DISK w aromaterapii</h2>
+    <div class="sub">Co wpływa na decyzję zakupową każdego typu?</div>
+    <div class="content-area">
+      <table>
+        <tr><th>Profil</th><th>Kupuje, gdy widzi…</th></tr>
+        <tr><td><strong style="color: #c0392b;">D</strong></td><td>Jakość, innowacyjność, konkretne rezultaty</td></tr>
+        <tr><td><strong style="color: var(--secondary);">I</strong></td><td>Referencje, status, nowości, społeczność</td></tr>
+        <tr><td><strong style="color: var(--primary-dark);">S</strong></td><td>Obsługę, kontakt, sprawdzone produkty</td></tr>
+        <tr><td><strong style="color: var(--accent);">K</strong></td><td>Badania, dane, logiczne rozwiązania</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 15: SECTION — ROZMOWA ====== -->
+<section class="slide-section">
+  <div class="pill">4 · Rozmowa</div>
+  <h2>Rozmowa handlowa</h2>
+  <div class="sub">Od telefonu, przez otwarcie, diagnozę, prezentację — aż po zamknięcie i rekomendacje</div>
+</section>
+
+<!-- ====== SLIDE 16: CENTER — TELEFONOWANIE ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">4 · Rozmowa</div>
+  <h2>Zasady telefonowania</h2>
+  <div class="sub">Telefon służy do umówienia spotkania — nie do sprzedaży</div>
+  <div class="content-area">
+    <div class="cards-3" style="margin-bottom: 0.6em;">
+      <div class="card-soft">
+        <h3>Mówisz TYLKO 3 rzeczy</h3>
+        <p><strong>1.</strong> Jak się nazywasz<br><strong>2.</strong> Skąd dzwonisz / kto polecił<br><strong>3.</strong> O co chodzi → spotkanie</p>
+      </div>
+      <div class="card-secondary">
+        <h3>88% to JAK mówisz</h3>
+        <p>W telefonie liczy się ton, tempo, modulacja. <strong>Uśmiechaj się</strong> — to słychać. Oddychaj głęboko. Nie dzwoń w stresie.</p>
+      </div>
+      <div class="card-accent">
+        <h3>Po 6 pytaniach — szansa rośnie</h3>
+        <p>Obiekcje zbijasz <strong>pytaniami</strong>, nie argumentami. 6 spokojnych pytań = duża szansa na spotkanie.</p>
+      </div>
+    </div>
+    <div class="accent-box">
+      <p><strong>Przykład:</strong> <em>„Dzień dobry, tu Emilia. Dzwonię, bo pani Ania wspomniała, że szuka pani naturalnych rozwiązań na sen. Chciałabym zaproponować 15 minut spotkania. Czy możemy się umówić?"</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 17: LEFT — 7 ETAPÓW ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">4 · Rozmowa</div>
+  <h2>7 etapów rozmowy handlowej</h2>
+  <div class="sub">Przebieg wg krzywej emocji (Wykres S)</div>
+  <div class="content-area">
+    <div class="cards-2">
+      <div style="display: flex; flex-direction: column; gap: 0.4em;">
+        <ol class="steps">
+          <li><strong>Otwarcie</strong> — pierwsze wrażenie: uśmiech, wygląd, energia</li>
+          <li><strong>Budowanie relacji</strong> — small talk dopasowany do profilu DISK</li>
+          <li><strong>Kontrakt</strong> — <em>„Mamy 20 min. Na końcu powie mi pani tak lub nie."</em></li>
+          <li><strong>Diagnoza</strong> — pytania o potrzeby, motywacje, obawy, doświadczenia</li>
+        </ol>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.4em;">
+        <ol class="steps" style="counter-reset: step 4;">
+          <li><strong>Prezentacja</strong> — TYLKO to, co wynika z diagnozy. Język korzyści</li>
+          <li><strong>Zamknięcie</strong> — <em>„Podsumowując: potrzebuje pani X. To, co pokazałam, spełnia to. Finalizujemy?"</em></li>
+          <li><strong>Rekomendacje</strong> — <em>„Czy zna pani kogoś, kto szuka naturalnych rozwiązań?"</em></li>
+        </ol>
+        <div class="accent-box-secondary" style="margin-top: 0.3em;">
+          <p><strong>Klucz:</strong> Obiekcje wyciągasz na etapie 4 (diagnoza) — nie po prezentacji!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 18: SPLIT — DIAGNOZA ====== -->
+<section class="slide-split">
+  <div class="split-text">
+    <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+    <div class="pill">4 · Rozmowa</div>
+    <h2>Diagnoza — najważniejszy etap</h2>
+    <div class="sub">Im więcej się dowiesz, tym lepsza prezentacja i mniej obiekcji</div>
+    <div class="content-area">
+      <h3>Pytania diagnostyczne w aromaterapii</h3>
+      <ul class="checklist">
+        <li><em>„Co panią skłoniło do zainteresowania się naturalnymi metodami?"</em></li>
+        <li><em>„Jakie ma pani doświadczenia z olejkami eterycznymi?"</em></li>
+        <li><em>„Co jest ważne, gdy wybiera pani produkty dla rodziny?"</em></li>
+        <li><em>„Próbowała pani wcześniej czegoś podobnego?"</em></li>
+        <li><em>„Gdyby miała pani idealny produkt — co musiałby spełniać?"</em></li>
+        <li><em>„Jak pani rodzina podchodzi do naturalnych metod?"</em></li>
+      </ul>
+    </div>
+  </div>
+  <div class="split-media" style="background: var(--secondary-soft);">
+    <div style="text-align: center;">
+      <div style="font-size: 0.65em; color: var(--text); line-height: 1.7;">
+        <p style="font-size: 1em; margin-bottom: 0.6em;"><strong>Wyciągnij 3 rzeczy:</strong></p>
+        <div class="accent-box" style="background: rgba(255,255,255,0.8); margin-bottom: 0.5em; text-align: left;">
+          <p><strong>1.</strong> Co jest dla klienta ważne<br><span style="color: var(--text-muted);">zdrowie, naturalność, rodzina, cena</span></p>
+        </div>
+        <div class="accent-box" style="background: rgba(255,255,255,0.8); margin-bottom: 0.5em; text-align: left;">
+          <p><strong>2.</strong> Jakie ma doświadczenia z branżą<br><span style="color: var(--text-muted);">olejki, MLM, naturalne produkty</span></p>
+        </div>
+        <div class="accent-box" style="background: rgba(255,255,255,0.8); text-align: left;">
+          <p><strong>3.</strong> Jakie ma obawy / obiekcje<br><span style="color: var(--text-muted);">cena, sceptycyzm, złe doświadczenia</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 19: CENTER — JĘZYK KORZYŚCI ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">4 · Rozmowa</div>
+  <h2>Język korzyści w aromaterapii</h2>
+  <div class="sub">Nie mów o cechach. Mów o tym, co klient zyska.</div>
+  <div class="content-area">
+    <table>
+      <tr><th style="color: #c0392b;">Cechy (tak nie mów) ✗</th><th style="color: var(--primary);">Korzyści (tak mów) ✓</th></tr>
+      <tr><td>Ten olejek ma certyfikat CPTG</td><td>Masz gwarancję, że to co dajesz rodzinie jest czyste i przebadane</td></tr>
+      <tr><td>Lawenda działa uspokajająco</td><td>Wyobraź sobie, że zasypiasz w 15 minut zamiast kręcić się godzinę</td></tr>
+      <tr><td>W zestawie jest 10 olejków</td><td>Masz gotowe rozwiązania na najczęstsze sytuacje — od przeziębienia po stres</td></tr>
+      <tr><td>Firma z 10-letnim doświadczeniem</td><td>Korzystasz z dekady współpracy z farmerami i naukowcami</td></tr>
+    </table>
+    <div class="accent-box" style="margin-top: 0.5em;">
+      <p><strong>Buduj obrazy słowami:</strong> <em>„Pani Kasiu, wyobraź sobie, że wieczorem robi pani kąpiel z trzema kroplami. Za 20 minut ciało rozluźnione, głowa spokojna. Bez tabletek."</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 20: SPLIT-REVERSE — OBIEKCJE ====== -->
+<section class="slide-split-reverse">
+  <div class="split-media" style="background: var(--secondary-soft);">
+    <div class="quote-block">
+      <div class="quote-text">Obiekcje to sygnał, że za wcześnie przeszłaś do prezentacji lub pominęłaś etap diagnozy.</div>
+      <div class="quote-author">— Sprzedaż Naturalna</div>
+    </div>
+  </div>
+  <div class="split-text">
+    <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+    <div class="pill">4 · Rozmowa</div>
+    <h2>Obiekcje — zapobiegaj</h2>
+    <div class="sub">Nie zbijaj obiekcji. Wyciągnij je PRZED prezentacją.</div>
+    <div class="content-area">
+      <table>
+        <tr><th>Obiekcja</th><th>Zapobiegaj na etapie diagnozy</th></tr>
+        <tr><td>„Za drogo"</td><td><em>„Jaki budżet przeznacza pani na zdrowie?"</em></td></tr>
+        <tr><td>„Muszę się zastanowić"</td><td>Kontrakt: <em>„Na końcu powie mi pani tak lub nie"</em></td></tr>
+        <tr><td>„Olejki nie działają"</td><td><em>„Jakie olejki pani próbowała? Skąd były?"</em></td></tr>
+        <tr><td>„To piramida"</td><td><em>„Jakie ma pani doświadczenia z MLM?"</em></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 21: SECTION — PODSUMOWANIE ====== -->
+<section class="slide-section">
+  <div class="pill">5 · Podsumowanie</div>
+  <h2>Działanie</h2>
+  <div class="sub">Checklista i złota zasada na koniec</div>
+</section>
+
+<!-- ====== SLIDE 22: LEFT — MAPA DZIAŁANIA ====== -->
+<section>
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo">
+  <div class="pill">5 · Podsumowanie</div>
+  <h2>Mapa działania</h2>
+  <div class="sub">Co robić krok po kroku jako networkerka w aromaterapii</div>
+  <div class="content-area">
+    <div class="cards-2">
+      <div class="card-soft">
+        <h3>Przed rozmową</h3>
+        <p>✓ Sprawdź swój „zbiornik emocji"<br>✓ Myśl: „idę pomóc, nie sprzedawać"<br>✓ Zadbaj o wygląd<br>✓ Przygotuj 2–3 próbki (nie cały katalog)</p>
+      </div>
+      <div class="card-secondary">
+        <h3>Otwarcie + Kontrakt</h3>
+        <p>✓ Uśmiech, odprężona postawa<br>✓ Rozpoznaj profil DISK<br>✓ Zakontraktuj: <em>„20 min, szczere tak lub nie"</em><br>✓ Zapytaj o rekomendacje na wstępie</p>
+      </div>
+      <div class="card-accent">
+        <h3>Diagnoza + Prezentacja</h3>
+        <p>✓ Pytania otwarte + pauzy + parafraza<br>✓ Wyciągnij potrzeby, motywacje, obawy<br>✓ Pokaż TYLKO to, co wynika z diagnozy<br>✓ Język korzyści + obrazy słowami</p>
+      </div>
+      <div class="card">
+        <h3>Zamknięcie + Follow-up</h3>
+        <p>✓ Podsumuj i sfinalizuj naturalnie<br>✓ Pytaj o polecenia — ZAWSZE<br>✓ Follow-up 24–48h (nie sprzedażowy)<br>✓ Zapisz notatki: DISK, potrzeby, obiekcje</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SLIDE 23: CENTER — ZŁOTA ZASADA ====== -->
+<section style="justify-content: center; align-items: center; text-align: center;">
+  <img src="aromagic_logo.png" alt="Logo" class="slide-logo" style="height: 34px; opacity: 0.8;">
+  <div class="pill">5 · Podsumowanie</div>
+  <h2>Złota zasada</h2>
+  <div class="content-area" style="justify-content: center; align-items: center; max-width: 80%; margin: 0 auto;">
+    <div class="quote-block">
+      <div class="quote-text" style="font-size: 0.9em;">„Wszystko, o czym tutaj mówiliśmy, będzie niczym, jeżeli tego nie będziesz stosował."</div>
+      <div class="quote-author">— Fryderyk Karzełek</div>
+    </div>
+    <div class="accent-box-secondary" style="margin-top: 1.2em; text-align: center;">
+      <p>Ćwicz. Umawiaj spotkania. Rób follow-upy. Popełniaj błędy i wyciągaj wnioski.<br><strong>Twój produkt naprawdę pomaga ludziom. Nie musisz nikogo przekonywać na siłę.<br>Musisz nauczyć się słuchać, diagnozować i dopasowywać.</strong></p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  width: 1280,
+  height: 720,
+  margin: 0,
+  transition: 'slide',
+  controls: true,
+  progress: true,
+  touch: true
+});
+
+// Debug mode: press D
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'd' || e.key === 'D') {
+    if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+      document.body.classList.toggle('debug-mode');
+    }
+  }
+});
+</script>
+</body>
+</html>

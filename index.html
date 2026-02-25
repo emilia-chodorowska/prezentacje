@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prezentacje — Emilia Chodorowska</title>
+<meta name="description" content="Zbiór prezentacji edukacyjnych — spółki, sprzedaż naturalna, aromaterapia i więcej.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<!-- Open Graph -->
+<meta property="og:title" content="Prezentacje — Emilia Chodorowska">
+<meta property="og:description" content="Zbiór prezentacji edukacyjnych — spółki, sprzedaż naturalna, aromaterapia i więcej.">
+<meta property="og:image" content="https://emilia-chodorowska.github.io/prezentacje/social-preview.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emilia-chodorowska.github.io/prezentacje/">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prezentacje — Emilia Chodorowska">
+<meta name="twitter:description" content="Zbiór prezentacji edukacyjnych — spółki, sprzedaż naturalna, aromaterapia i więcej.">
+<meta name="twitter:image" content="https://emilia-chodorowska.github.io/prezentacje/social-preview.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #7BA07E;
+  --primary-soft: #D4E6D5;
+  --primary-dark: #5B7F5E;
+  --secondary: #D4A843;
+  --secondary-soft: #FEF9E7;
+  --accent: #7E6BAD;
+  --accent-soft: #EDE8F5;
+  --text: #1E293B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --bg: #FFFFFF;
+  --bg-soft: #F8FAFC;
+  --border: #E2E8F0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-soft);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--accent) 100%);
+  color: white;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  font-size: 1.05rem;
+  opacity: 0.9;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 900px;
+  margin: -1.5rem auto 3rem;
+  padding: 0 1.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--bg);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.card-img {
+  width: 100%;
+  aspect-ratio: 1200/630;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.card-body h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.card-body p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 1rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .header { padding: 2rem 1.5rem 2rem; }
+  .header h1 { font-size: 1.6rem; }
+  .container { margin-top: -1rem; }
+  .grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .card-body { padding: 1rem 1.25rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Prezentacje</h1>
+  <p>Zbiór prezentacji edukacyjnych — spółki, sprzedaż, aromaterapia i więcej.</p>
+</div>
+
+<div class="container">
+  <div class="grid">
+
+    <a class="card" href="sekrety-spolek/">
+      <img class="card-img" src="sekrety-spolek/social-preview.jpg" alt="Sekrety Spółek — Kompletny kurs">
+      <div class="card-body">
+        <h2>Sekrety Spółek — Kompletny kurs</h2>
+        <p>Rodzaje spółek, rejestracja, podatki, KRS — kompletny kurs o zakładaniu i prowadzeniu spółek w Polsce.</p>
+        <div class="card-meta">
+          <span>150 slajdów</span>
+          <span>reveal.js</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="sprzedaz-naturalna/">
+      <img class="card-img" src="sprzedaz-naturalna/social-preview.jpg" alt="Sprzedaż Naturalna w MLM">
+      <div class="card-body">
+        <h2>Sprzedaż Naturalna w MLM</h2>
+        <p>Komunikacja, DISK, diagnoza potrzeb, język korzyści — przewodnik po sprzedaży naturalnej wg Fryderyka Karzełka.</p>
+        <div class="card-meta">
+          <span>24 slajdy</span>
+          <span>reveal.js</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="footer">
+  Emilia Chodorowska &middot; 2025
+</div>
+
+</body>
+</html>
