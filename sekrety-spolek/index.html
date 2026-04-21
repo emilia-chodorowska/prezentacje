@@ -548,6 +548,55 @@
     @media screen and (max-aspect-ratio: 4/3) {
       .mobile-landing:not(.dismissed) { display: flex; }
     }
+
+    /* === SPIS TREŚCI === */
+    .reveal .slides section.slide-toc {
+      justify-content: flex-start;
+      padding-top: 1.2em;
+    }
+    .slide-toc h2 {
+      margin-bottom: 0.5em;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6em 2em;
+      width: 100%;
+      margin-top: 0.3em;
+    }
+    .toc-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35em;
+    }
+    .toc-col a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+      padding: 0.35em 0.5em;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.75em;
+      line-height: 1.3;
+      border-left: 3px solid var(--primary-soft);
+      transition: all 0.15s ease;
+    }
+    .toc-col a:hover {
+      background: var(--primary-soft);
+      border-left-color: var(--primary);
+      transform: translateX(2px);
+    }
+    .toc-num {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 0.9em;
+      min-width: 1.8em;
+      flex-shrink: 0;
+    }
+    .toc-text {
+      color: var(--text);
+    }
   </style>
 </head>
 <body>
@@ -774,6 +823,7 @@
       <img src="slides/slide-219.jpg" alt="Slajd 219" loading="lazy" />
       <img src="slides/slide-220.jpg" alt="Slajd 220" loading="lazy" />
       <img src="slides/slide-221.jpg" alt="Slajd 221" loading="lazy" />
+      <img src="slides/slide-222.jpg" alt="Slajd 222" loading="lazy" />
     </div>
   </div>
 
@@ -788,8 +838,36 @@
         <div class="byline">Bartosz Szaleniec, doradca podatkowy · 16 lekcji</div>
       </section>
 
+      <!-- ==================== SPIS TREŚCI ==================== -->
+      <section class="slide-toc">
+        <div class="pill">Spis treści</div>
+        <h2>16 lekcji kursu</h2>
+        <div class="toc-grid">
+          <div class="toc-col">
+            <a href="#/lekcja-01"><span class="toc-num">01</span><span class="toc-text">Podwójne opodatkowanie to MIT</span></a>
+            <a href="#/lekcja-02"><span class="toc-num">02</span><span class="toc-text">Wynagrodzenie członka zarządu z powołania</span></a>
+            <a href="#/lekcja-03"><span class="toc-num">03</span><span class="toc-text">Wynajem spółce — nieruchomości i ruchomości</span></a>
+            <a href="#/lekcja-04"><span class="toc-num">04</span><span class="toc-text">Umowa o dzieło z prawami autorskimi</span></a>
+            <a href="#/lekcja-05"><span class="toc-num">05</span><span class="toc-text">Fakturowanie spółki z JDG (B2B)</span></a>
+            <a href="#/lekcja-06"><span class="toc-num">06</span><span class="toc-text">Zatrudnienie, prokurent i dywidenda</span></a>
+            <a href="#/lekcja-07"><span class="toc-num">07</span><span class="toc-text">Ulga B+R i inne ulgi podatkowe</span></a>
+            <a href="#/lekcja-08"><span class="toc-num">08</span><span class="toc-text">Co spółka może kupować + inwestowanie</span></a>
+          </div>
+          <div class="toc-col">
+            <a href="#/lekcja-09"><span class="toc-num">09</span><span class="toc-text">ZUS, VAT i samochód w spółce</span></a>
+            <a href="#/lekcja-10"><span class="toc-num">10</span><span class="toc-text">Odpowiedzialność zarządu + strategia dla SaaS</span></a>
+            <a href="#/lekcja-11"><span class="toc-num">11</span><span class="toc-text">Licencja na oprogramowanie — IP spółce</span></a>
+            <a href="#/lekcja-12"><span class="toc-num">12</span><span class="toc-text">VAT — rejestracja i czy warto być VAT-owcem</span></a>
+            <a href="#/lekcja-13"><span class="toc-num">13</span><span class="toc-text">VAT — unikanie rejestracji i limit nieruchomości</span></a>
+            <a href="#/lekcja-14"><span class="toc-num">14</span><span class="toc-text">Ujemny VAT — jak odzyskać podatek z urzędu</span></a>
+            <a href="#/lekcja-15"><span class="toc-num">15</span><span class="toc-text">VAT — sprzedaż usług B2C w Europie</span></a>
+            <a href="#/lekcja-16"><span class="toc-num">16</span><span class="toc-text">Reverse Charge VAT a Merchant of Record</span></a>
+          </div>
+        </div>
+      </section>
+
       <!-- ========== 01-podwojne-opodatkowanie-to-mit ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-01">
         <div class="pill">Sekrety Spółek</div>
         <h1>Podwójne opodatkowanie<br>to MIT</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -1129,7 +1207,7 @@
       </section>
 
       <!-- ========== 02-wynagrodzenie-zarzadu ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-02">
         <div class="pill">Sekrety Spółek</div>
         <h1>Wynagrodzenie członka zarządu<br>z powołania</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -1349,7 +1427,7 @@
       </section>
 
       <!-- ========== 03-wynajem-spolce ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-03">
         <div class="pill">Sekrety Spółek</div>
         <h1>Wynajem spółce — nieruchomości i ruchomości</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -1607,7 +1685,7 @@ Efektywna stawka:                 8,5%</div>
       </section>
 
       <!-- ========== 04-umowa-o-dzielo ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-04">
         <div class="pill">Sekrety Spółek</div>
         <h1>Umowa o dzieło<br>z prawami autorskimi</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -1873,7 +1951,7 @@ Efektywna stawka:                            4,5%</div>
       </section>
 
       <!-- ========== 05-fakturowanie-jdg ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-05">
         <div class="pill">Sekrety Spółek</div>
         <h1>Fakturowanie spółki z JDG (B2B)</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -2145,7 +2223,7 @@ Efektywna stawka:                            4,5%</div>
       </section>
 
       <!-- ========== 06-zatrudnienie-prokurent-dywidenda ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-06">
         <div class="pill">Sekrety Spółek</div>
         <h1>Zatrudnienie, prokurent<br>i dywidenda</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -2466,7 +2544,7 @@ Do kieszeni:                       737 100 zł
       </section>
 
       <!-- ========== 07-ulga-br ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-07">
         <div class="pill">Sekrety Spółek</div>
         <h1>Ulga B+R i inne ulgi podatkowe</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -2786,7 +2864,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 08-koszty-i-inwestowanie ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-08">
         <div class="pill">Sekrety Spółek</div>
         <h1>Co spółka może kupować<br>+ inwestowanie</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -3069,7 +3147,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 09-zus-vat-samochod ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-09">
         <div class="pill">Sekrety Spółek</div>
         <h1>ZUS, VAT i samochód w spółce</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -3372,7 +3450,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 10-odpowiedzialnosc-i-strategia ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-10">
         <div class="pill">Sekrety Spółek</div>
         <h1>Odpowiedzialność zarządu<br>+ strategia dla SaaS</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -3692,7 +3770,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 11-licencja-ip-spolce ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-11">
         <div class="pill">Sekrety Spółek</div>
         <h1>Licencja na oprogramowanie<br>— jak użyczyć IP spółce</h1>
         <div class="byline">Materiał uzupełniający — na podstawie przepisów + rekomendacja prawniczki</div>
@@ -3878,7 +3956,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 12-vat-rejestracja-i-czy-warto ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-12">
         <div class="pill">Sekrety Spółek</div>
         <h1>VAT — rejestracja<br>i czy warto być VAT-owcem</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -4002,7 +4080,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 13-vat-unikanie-i-nieruchomosci ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-13">
         <div class="pill">Sekrety Spółek</div>
         <h1>VAT — unikanie rejestracji<br>i limit nieruchomości</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -4111,7 +4189,7 @@ Spółka: koszt 60 000 zł/rok
       </section>
 
       <!-- ========== 14-ujemny-vat ========== -->
-<section class="slide-title">
+<section class="slide-title" id="lekcja-14">
         <div class="pill">Sekrety Spółek</div>
         <h1>Ujemny VAT — jak odzyskać<br>podatek z urzędu</h1>
         <div class="byline">Kurs Sekrety Spółek — Bartosz Szaleniec, doradca podatkowy</div>
@@ -4235,7 +4313,7 @@ Spółka: koszt 60 000 zł/rok
 
       <!-- ========== 15-vat-b2c-europa ========== -->
 
-      <section class="slide-title">
+      <section class="slide-title" id="lekcja-15">
         <div class="pill">Sekrety Spółek · Lekcja 15</div>
         <h1>VAT — sprzedaż usług<br>B2C w Europie</h1>
         <div class="byline">Kurs Sekrety Spółek + przepisy UE · Dyrektywa 2006/112/WE</div>
@@ -4507,7 +4585,7 @@ Spółka: koszt 60 000 zł/rok
 
       <!-- ========== 16-reverse-charge-vs-mor ========== -->
 
-      <section class="slide-title">
+      <section class="slide-title" id="lekcja-16">
         <div class="pill">Sekrety Spółek · Lekcja 16</div>
         <h1>Reverse Charge VAT<br>a Merchant of Record</h1>
         <div class="byline">Dwa mechanizmy, które się uzupełniają · Rozszerzenie lekcji 15</div>
