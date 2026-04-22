@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<!--
+  PREZENTACJA — Mini-kurs VAT dla SaaS (case Aromagic)
+  Motyw: doTERRA (sage + gold + purple)
+  reveal.js 5.1.0 | 1920x1080 | bez grafik, bez logo
+  9 lekcji + spis treści
+-->
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAT dla SaaS — mini-kurs (case Aromagic)</title>
+  <meta name="description" content="Mini-kurs VAT dla spółek SaaS sprzedających w UE i poza. Reverse charge, OSS, MoR, architektura hybrydowa Stripe, case Aromagic.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Open Graph -->
+  <meta property="og:title" content="VAT dla SaaS — mini-kurs (case Aromagic)">
+  <meta property="og:description" content="9 lekcji o VAT dla SaaS: podstawy, reverse charge, OSS, Merchant of Record, hybryda Stripe, case Aromagic.">
+  <meta property="og:image" content="https://emilia-chodorowska.github.io/prezentacje/sekrety-spolek/social-preview.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://emilia-chodorowska.github.io/prezentacje/sekrety-spolek/kurs-vat.html">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VAT dla SaaS — mini-kurs (case Aromagic)">
+  <meta name="twitter:description" content="9 lekcji o VAT dla SaaS: reverse charge, OSS, MoR, hybryda Stripe, case Aromagic.">
+  <meta name="twitter:image" content="https://emilia-chodorowska.github.io/prezentacje/sekrety-spolek/social-preview.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5.1.0/dist/reveal.css">
+  <style>
+    :root {
+      --primary: #7BA07E;
+      --primary-soft: #D4E6D5;
+      --primary-dark: #5B7F5E;
+      --secondary: #D4A843;
+      --secondary-soft: #FEF9E7;
+      --accent: #7E6BAD;
+      --accent-soft: #EDE8F5;
+      --text: #1E293B;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      --bg: #FFFFFF;
+      --bg-soft: #F8FAFC;
+      --border: #E2E8F0;
+    }
+
+    .reveal {
+      font-size: 42px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+    }
+
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal .slides section {
+      padding: 1.8em 2.5em 1.5em;
+      box-sizing: border-box;
+      height: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start;
+      justify-content: center !important;
+    }
+
+    /* === TITLE & SECTION slides === */
+    .reveal .slides section.slide-title,
+    .reveal .slides section.slide-section {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* === TYPOGRAPHY === */
+    .reveal h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      color: var(--text);
+      margin: 0 0 0.3em 0;
+      line-height: 1.15;
+    }
+
+    .reveal h2 {
+      font-size: 1.8em;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 0 0 0.2em 0;
+      line-height: 1.2;
+    }
+
+    .reveal h3 {
+      font-size: 0.9em;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0 0 0.5em 0;
+      line-height: 1.3;
+    }
+
+    .reveal p, .reveal .body-text {
+      font-size: 0.82em;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin: 0 0 0.6em 0;
+    }
+
+    .reveal li {
+      font-size: 0.75em;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 0.3em;
+    }
+
+    .reveal ul, .reveal ol {
+      margin: 0.3em 0;
+      padding-left: 1.2em;
+    }
+
+    /* === PILL === */
+    .pill {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-size: 0.55em;
+      font-weight: 600;
+      padding: 0.35em 1em;
+      border-radius: 100px;
+      margin-bottom: 0.8em;
+      letter-spacing: 0.01em;
+    }
+
+    .slide-title .pill {
+      font-size: 0.62em;
+      margin-bottom: 1em;
+    }
+
+    /* === BYLINE === */
+    .byline {
+      font-size: 0.65em;
+      color: var(--text-muted);
+      margin-top: 0.5em;
+      font-weight: 400;
+    }
+
+    /* === SUB (subtitle under h2) === */
+    .sub {
+      font-size: 0.75em;
+      color: var(--text-muted);
+      margin-top: -0.3em;
+      margin-bottom: 0.8em;
+      font-weight: 400;
+    }
+
+    /* === CARDS === */
+    .cards-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2em;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.2em;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    .cards-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.2em;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9em 1em;
+    }
+
+    .card-soft {
+      background: var(--primary-soft);
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 0.9em 1em;
+    }
+
+    .card-secondary {
+      background: var(--secondary-soft);
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 0.9em 1em;
+    }
+
+    .card-accent {
+      background: var(--accent-soft);
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 0.9em 1em;
+    }
+
+    .card h3 {
+      margin-bottom: 0.4em;
+    }
+
+    .card p, .card li {
+      font-size: 0.7em;
+    }
+
+    /* === TABLE === */
+    .reveal table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.7em;
+      border-radius: 12px;
+      overflow: hidden;
+      border: none;
+      margin-top: 0.5em;
+    }
+
+    .reveal table th {
+      background: var(--bg-soft);
+      font-weight: 600;
+      color: var(--text);
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .reveal table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .reveal table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .reveal table tbody tr:hover {
+      background: var(--bg-soft);
+    }
+
+    /* === ACCENT BOX === */
+    .accent-box {
+      background: var(--primary-soft);
+      border-radius: 12px;
+      padding: 0.7em 1.1em;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.5em;
+    }
+
+    .accent-box p {
+      font-size: 0.7em;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .accent-box-secondary {
+      background: var(--secondary-soft);
+      border-radius: 12px;
+      padding: 0.7em 1.1em;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.5em;
+    }
+
+    .accent-box-secondary p {
+      font-size: 0.7em;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .accent-box-accent {
+      background: var(--accent-soft);
+      border-radius: 12px;
+      padding: 0.7em 1.1em;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 0.5em;
+    }
+
+    .accent-box-accent p {
+      font-size: 0.7em;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* === CHECKLIST === */
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0.5em 0;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 1.8em;
+      margin-bottom: 0.5em;
+      font-size: 0.75em;
+    }
+
+    .checklist li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+
+    /* === STEPS === */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: 0.5em 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 2.5em;
+      margin-bottom: 0.7em;
+      font-size: 0.75em;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: -0.1em;
+      width: 1.6em;
+      height: 1.6em;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9em;
+    }
+
+    /* === STATS === */
+    .stats {
+      display: flex;
+      gap: 2em;
+      margin-top: 0.5em;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .stat-number {
+      font-size: 2.4em;
+      font-weight: 700;
+      color: var(--secondary);
+      line-height: 1;
+      margin-bottom: 0.2em;
+    }
+
+    .stat-label {
+      font-size: 0.65em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* === HIGHLIGHT TEXT === */
+    .highlight {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .highlight-accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* === BG VARIANTS === */
+    .bg-soft {
+      background: var(--bg-soft) !important;
+    }
+
+    /* === CONTENT WRAPPER (flex-grow to fill space) === */
+    .content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* === SLIDE NUMBER === */
+    .reveal .slide-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* === DEBUG MODE === */
+    body.debug-mode .reveal .slides section {
+      outline: 2px dashed red;
+    }
+
+    body.debug-mode .pill,
+    body.debug-mode .card,
+    body.debug-mode .card-soft,
+    body.debug-mode .card-secondary,
+    body.debug-mode .card-accent,
+    body.debug-mode .accent-box,
+    body.debug-mode .accent-box-secondary,
+    body.debug-mode .accent-box-accent,
+    body.debug-mode table {
+      outline: 1px dashed rgba(255, 0, 0, 0.5);
+    }
+
+    /* === SPLIT VIEW === */
+    .reveal .slides section.slide-split {
+      padding: 0;
+      flex-direction: row !important; justify-content: flex-start !important; align-items: stretch !important;
+    }
+
+    .split-text {
+      width: 60%;
+      padding: 1.5em 1.5em 1.5em 2.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      align-items: flex-start;
+    }
+
+    .split-media {
+      width: 40%;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2em;
+      box-sizing: border-box;
+    }
+
+    .slide-split-reverse .split-text {
+      padding: 1.5em 2.5em 1.5em 1.5em;
+      order: 2;
+    }
+
+    .slide-split-reverse .split-media {
+      order: 1;
+    }
+
+    /* === QUOTE (in split media panel) === */
+    .quote-block {
+      text-align: center;
+      padding: 1.5em;
+    }
+
+    .quote-text {
+      font-size: 0.85em;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 0.8em;
+    }
+
+    .quote-author {
+      font-size: 0.62em;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* === CODE/EXAMPLE BOX === */
+    .example-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1em 1.3em;
+      font-family: 'Inter', monospace;
+      font-size: 0.65em;
+      color: var(--text);
+      line-height: 1.7;
+      white-space: pre-line;
+      margin-top: 0.5em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* === VS COMPARISON === */
+    .vs-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1em;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    .vs-divider {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* === MOBILE LANDING (vertical scroll) === */
+    .mobile-landing {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #ffffff;
+      flex-direction: column;
+      align-items: center;
+      font-family: "Inter", sans-serif;
+      padding: 0;
+    }
+    .mobile-landing .slide-scroll {
+      flex: 1;
+      width: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      background: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .mobile-landing .slide-scroll img {
+      width: 100%;
+      display: block;
+    }
+    .mobile-landing.dismissed { display: none !important; }
+    @media screen and (max-aspect-ratio: 4/3) {
+      .mobile-landing:not(.dismissed) { display: flex; }
+    }
+
+    /* === SPIS TREŚCI === */
+    .reveal .slides section.slide-toc {
+      justify-content: flex-start;
+      padding-top: 1.2em;
+    }
+    .slide-toc h2 {
+      margin-bottom: 0.5em;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6em 2em;
+      width: 100%;
+      margin-top: 0.3em;
+    }
+    .toc-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35em;
+    }
+    .toc-col a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.7em;
+      padding: 0.35em 0.5em;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.75em;
+      line-height: 1.3;
+      border-left: 3px solid var(--primary-soft);
+      transition: all 0.15s ease;
+    }
+    .toc-col a:hover {
+      background: var(--primary-soft);
+      border-left-color: var(--primary);
+      transform: translateX(2px);
+    }
+    .toc-num {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 0.9em;
+      min-width: 1.8em;
+      flex-shrink: 0;
+    }
+    .toc-text {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-landing">
+    <div class="slide-scroll">
+      <img src="slides-kurs-vat/slide-001.jpg" alt="Slajd 1" />
+      <img src="slides-kurs-vat/slide-002.jpg" alt="Slajd 2" />
+      <img src="slides-kurs-vat/slide-003.jpg" alt="Slajd 3" />
+      <img src="slides-kurs-vat/slide-004.jpg" alt="Slajd 4" loading="lazy" />
+      <img src="slides-kurs-vat/slide-005.jpg" alt="Slajd 5" loading="lazy" />
+      <img src="slides-kurs-vat/slide-006.jpg" alt="Slajd 6" loading="lazy" />
+      <img src="slides-kurs-vat/slide-007.jpg" alt="Slajd 7" loading="lazy" />
+      <img src="slides-kurs-vat/slide-008.jpg" alt="Slajd 8" loading="lazy" />
+      <img src="slides-kurs-vat/slide-009.jpg" alt="Slajd 9" loading="lazy" />
+      <img src="slides-kurs-vat/slide-010.jpg" alt="Slajd 10" loading="lazy" />
+      <img src="slides-kurs-vat/slide-011.jpg" alt="Slajd 11" loading="lazy" />
+      <img src="slides-kurs-vat/slide-012.jpg" alt="Slajd 12" loading="lazy" />
+      <img src="slides-kurs-vat/slide-013.jpg" alt="Slajd 13" loading="lazy" />
+      <img src="slides-kurs-vat/slide-014.jpg" alt="Slajd 14" loading="lazy" />
+      <img src="slides-kurs-vat/slide-015.jpg" alt="Slajd 15" loading="lazy" />
+      <img src="slides-kurs-vat/slide-016.jpg" alt="Slajd 16" loading="lazy" />
+      <img src="slides-kurs-vat/slide-017.jpg" alt="Slajd 17" loading="lazy" />
+      <img src="slides-kurs-vat/slide-018.jpg" alt="Slajd 18" loading="lazy" />
+      <img src="slides-kurs-vat/slide-019.jpg" alt="Slajd 19" loading="lazy" />
+      <img src="slides-kurs-vat/slide-020.jpg" alt="Slajd 20" loading="lazy" />
+      <img src="slides-kurs-vat/slide-021.jpg" alt="Slajd 21" loading="lazy" />
+      <img src="slides-kurs-vat/slide-022.jpg" alt="Slajd 22" loading="lazy" />
+      <img src="slides-kurs-vat/slide-023.jpg" alt="Slajd 23" loading="lazy" />
+      <img src="slides-kurs-vat/slide-024.jpg" alt="Slajd 24" loading="lazy" />
+      <img src="slides-kurs-vat/slide-025.jpg" alt="Slajd 25" loading="lazy" />
+      <img src="slides-kurs-vat/slide-026.jpg" alt="Slajd 26" loading="lazy" />
+      <img src="slides-kurs-vat/slide-027.jpg" alt="Slajd 27" loading="lazy" />
+      <img src="slides-kurs-vat/slide-028.jpg" alt="Slajd 28" loading="lazy" />
+      <img src="slides-kurs-vat/slide-029.jpg" alt="Slajd 29" loading="lazy" />
+      <img src="slides-kurs-vat/slide-030.jpg" alt="Slajd 30" loading="lazy" />
+      <img src="slides-kurs-vat/slide-031.jpg" alt="Slajd 31" loading="lazy" />
+      <img src="slides-kurs-vat/slide-032.jpg" alt="Slajd 32" loading="lazy" />
+      <img src="slides-kurs-vat/slide-033.jpg" alt="Slajd 33" loading="lazy" />
+      <img src="slides-kurs-vat/slide-034.jpg" alt="Slajd 34" loading="lazy" />
+      <img src="slides-kurs-vat/slide-035.jpg" alt="Slajd 35" loading="lazy" />
+      <img src="slides-kurs-vat/slide-036.jpg" alt="Slajd 36" loading="lazy" />
+      <img src="slides-kurs-vat/slide-037.jpg" alt="Slajd 37" loading="lazy" />
+      <img src="slides-kurs-vat/slide-038.jpg" alt="Slajd 38" loading="lazy" />
+      <img src="slides-kurs-vat/slide-039.jpg" alt="Slajd 39" loading="lazy" />
+      <img src="slides-kurs-vat/slide-040.jpg" alt="Slajd 40" loading="lazy" />
+      <img src="slides-kurs-vat/slide-041.jpg" alt="Slajd 41" loading="lazy" />
+      <img src="slides-kurs-vat/slide-042.jpg" alt="Slajd 42" loading="lazy" />
+      <img src="slides-kurs-vat/slide-043.jpg" alt="Slajd 43" loading="lazy" />
+      <img src="slides-kurs-vat/slide-044.jpg" alt="Slajd 44" loading="lazy" />
+      <img src="slides-kurs-vat/slide-045.jpg" alt="Slajd 45" loading="lazy" />
+      <img src="slides-kurs-vat/slide-046.jpg" alt="Slajd 46" loading="lazy" />
+      <img src="slides-kurs-vat/slide-047.jpg" alt="Slajd 47" loading="lazy" />
+      <img src="slides-kurs-vat/slide-048.jpg" alt="Slajd 48" loading="lazy" />
+      <img src="slides-kurs-vat/slide-049.jpg" alt="Slajd 49" loading="lazy" />
+      <img src="slides-kurs-vat/slide-050.jpg" alt="Slajd 50" loading="lazy" />
+      <img src="slides-kurs-vat/slide-051.jpg" alt="Slajd 51" loading="lazy" />
+      <img src="slides-kurs-vat/slide-052.jpg" alt="Slajd 52" loading="lazy" />
+      <img src="slides-kurs-vat/slide-053.jpg" alt="Slajd 53" loading="lazy" />
+      <img src="slides-kurs-vat/slide-054.jpg" alt="Slajd 54" loading="lazy" />
+      <img src="slides-kurs-vat/slide-055.jpg" alt="Slajd 55" loading="lazy" />
+      <img src="slides-kurs-vat/slide-056.jpg" alt="Slajd 56" loading="lazy" />
+      <img src="slides-kurs-vat/slide-057.jpg" alt="Slajd 57" loading="lazy" />
+      <img src="slides-kurs-vat/slide-058.jpg" alt="Slajd 58" loading="lazy" />
+      <img src="slides-kurs-vat/slide-059.jpg" alt="Slajd 59" loading="lazy" />
+      <img src="slides-kurs-vat/slide-060.jpg" alt="Slajd 60" loading="lazy" />
+      <img src="slides-kurs-vat/slide-061.jpg" alt="Slajd 61" loading="lazy" />
+      <img src="slides-kurs-vat/slide-062.jpg" alt="Slajd 62" loading="lazy" />
+      <img src="slides-kurs-vat/slide-063.jpg" alt="Slajd 63" loading="lazy" />
+      <img src="slides-kurs-vat/slide-064.jpg" alt="Slajd 64" loading="lazy" />
+      <img src="slides-kurs-vat/slide-065.jpg" alt="Slajd 65" loading="lazy" />
+      <img src="slides-kurs-vat/slide-066.jpg" alt="Slajd 66" loading="lazy" />
+      <img src="slides-kurs-vat/slide-067.jpg" alt="Slajd 67" loading="lazy" />
+      <img src="slides-kurs-vat/slide-068.jpg" alt="Slajd 68" loading="lazy" />
+      <img src="slides-kurs-vat/slide-069.jpg" alt="Slajd 69" loading="lazy" />
+      <img src="slides-kurs-vat/slide-070.jpg" alt="Slajd 70" loading="lazy" />
+      <img src="slides-kurs-vat/slide-071.jpg" alt="Slajd 71" loading="lazy" />
+      <img src="slides-kurs-vat/slide-072.jpg" alt="Slajd 72" loading="lazy" />
+      <img src="slides-kurs-vat/slide-073.jpg" alt="Slajd 73" loading="lazy" />
+      <img src="slides-kurs-vat/slide-074.jpg" alt="Slajd 74" loading="lazy" />
+      <img src="slides-kurs-vat/slide-075.jpg" alt="Slajd 75" loading="lazy" />
+      <img src="slides-kurs-vat/slide-076.jpg" alt="Slajd 76" loading="lazy" />
+      <img src="slides-kurs-vat/slide-077.jpg" alt="Slajd 77" loading="lazy" />
+      <img src="slides-kurs-vat/slide-078.jpg" alt="Slajd 78" loading="lazy" />
+      <img src="slides-kurs-vat/slide-079.jpg" alt="Slajd 79" loading="lazy" />
+      <img src="slides-kurs-vat/slide-080.jpg" alt="Slajd 80" loading="lazy" />
+    </div>
+  </div>
+
+
+  <div class="reveal">
+    <div class="slides">
+      <!-- ==================== MASTER TITLE ==================== -->
+      <section class="slide-title">
+        <div class="pill">Mini-kurs VAT</div>
+        <h1>VAT dla SaaS</h1>
+        <div class="byline">9 lekcji · case Aromagic · na bazie kursu Sekrety Spółek</div>
+      </section>
+
+      <!-- ==================== SPIS TREŚCI ==================== -->
+      <section class="slide-toc">
+        <div class="pill">Spis treści</div>
+        <h2>9 lekcji mini-kursu VAT</h2>
+        <div class="toc-grid">
+          <div class="toc-col">
+            <a href="#/vat-01"><span class="toc-num">01</span><span class="toc-text">Podstawy VAT — należny vs naliczony</span></a>
+            <a href="#/vat-02"><span class="toc-num">02</span><span class="toc-text">Zwolnienie podmiotowe — limit 240k</span></a>
+            <a href="#/vat-03"><span class="toc-num">03</span><span class="toc-text">Miejsce świadczenia usług ⭐</span></a>
+            <a href="#/vat-04"><span class="toc-num">04</span><span class="toc-text">Reverse charge — B2B cross-border UE</span></a>
+            <a href="#/vat-05"><span class="toc-num">05</span><span class="toc-text">B2C UE: próg 10k EUR + OSS</span></a>
+          </div>
+          <div class="toc-col">
+            <a href="#/vat-06"><span class="toc-num">06</span><span class="toc-text">Merchant of Record (MoR)</span></a>
+            <a href="#/vat-07"><span class="toc-num">07</span><span class="toc-text">Architektura hybrydowa Stripe</span></a>
+            <a href="#/vat-08"><span class="toc-num">08</span><span class="toc-text">Ujemny VAT + kiedy się rejestrować</span></a>
+            <a href="#/vat-09"><span class="toc-num">09</span><span class="toc-text">Case Aromagic — mapa i decyzja ⭐</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 01-podstawy-vat ========== -->
+      <section class="slide-title" id="vat-01">
+        <div class="pill">VAT 01</div>
+        <h1>Podstawy VAT</h1>
+        <div class="byline">Co to VAT, należny vs naliczony, stawki, zwolnienia</div>
+      </section>
+
+      <section class="slide-section">
+        <div class="pill">01 · Podstawy VAT</div>
+        <h2>Co to jest VAT?</h2>
+        <p class="sub">Podatek od wartości dodanej — płacony etapami w łańcuchu sprzedaży</p>
+      </section>
+
+      <section>
+        <div class="pill">01 · Podstawy VAT</div>
+        <h2>Łańcuch sprzedaży</h2>
+        <div class="content">
+          <div class="example-box">Producent (100 zł) → Hurtownik (200 zł) → Sklep (300 zł) → Konsument
++23 VAT       +46 VAT        +69 VAT
+
+Każdy uczestnik płaci VAT tylko od swojej MARŻY:
+• Producent: 23 zł (marża 100)
+• Hurtownik: 46 − 23 = 23 zł (marża 100)
+• Sklep:     69 − 46 = 23 zł (marża 100)
+
+Pełny VAT 69 zł finalnie płaci KONSUMENT.
+Firmy są tylko pośrednikami.</div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Neutralność:</strong> dla firmy-VATowca VAT jest zero-sum — kupujesz z VAT (odliczasz), sprzedajesz z VAT (płacisz różnicę do US). Koszt ponosi konsument końcowy.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">01 · Podstawy VAT</div>
+        <h2>VAT należny vs VAT naliczony</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>VAT należny</h3>
+              <p><strong>Pieniądze które POBIERASZ</strong> od klienta.</p>
+              <p>Od Twojej sprzedaży. Musisz odprowadzić do US.</p>
+            </div>
+            <div class="card-secondary">
+              <h3>VAT naliczony</h3>
+              <p><strong>Pieniądze które ZAPŁACIŁEŚ</strong> dostawcom.</p>
+              <p>Od Twoich zakupów. Możesz ODLICZYĆ.</p>
+            </div>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Wzór miesięczny:</strong> <span class="highlight-accent">VAT do zapłaty = VAT należny − VAT naliczony</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">01 · Podstawy VAT</div>
+        <h2>Stawki VAT w Polsce</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Stawka</th><th>Kiedy</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>23%</strong> — podstawowa</td><td>Większość towarów i usług (w tym <strong>SaaS, IT, konsulting, marketing</strong>)</td></tr>
+              <tr><td>8%</td><td>Budownictwo mieszkaniowe, transport osób, niektóra gastronomia</td></tr>
+              <tr><td>5%</td><td>Książki, większość żywności, prasa</td></tr>
+              <tr><td>0%</td><td>Eksport towarów i niektóre usługi międzynarodowe</td></tr>
+              <tr><td>Zwolnione</td><td>Usługi medyczne, finansowe, edukacyjne (art. 43)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">01 · Podstawy VAT</div>
+        <h2>Dwa typy zwolnienia — nie myl!</h2>
+        <div class="content">
+          <div class="vs-container">
+            <div class="card-soft">
+              <h3>Podmiotowe (art. 113)</h3>
+              <p>Zależy od SKALI przychodu</p>
+              <ul>
+                <li>Przychody &lt; 240k zł/rok</li>
+                <li>NIE rejestrujesz się na VAT</li>
+                <li>NIE naliczasz, NIE odliczasz</li>
+                <li>Dla małych firm i freelancerów</li>
+              </ul>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="card-accent">
+              <h3>Przedmiotowe (art. 43)</h3>
+              <p>Zależy od RODZAJU USŁUGI</p>
+              <ul>
+                <li>Medyczne, finansowe, ubezpieczeniowe</li>
+                <li>Nawet VATowiec sprzedaje bez VAT</li>
+                <li>Nie odliczasz VAT związanego</li>
+                <li>Katalog zamknięty w ustawie</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">01 · Podstawy VAT</div>
+        <h2>Kiedy VAT ma sens?</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Sytuacja</th><th>Być VATowcem?</th><th>Dlaczego</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Klienci B2C (konsumenci)</td><td>❌ raczej nie</td><td>+23% do ceny lub -23% marży</td></tr>
+              <tr><td>Klienci B2B VATowcy</td><td>✅ tak</td><td>Neutralnie (klient odlicza)</td></tr>
+              <tr><td>Eksport / reverse charge</td><td>✅ zdecydowanie</td><td>0% sprzedaż + zwrot VAT krajowego</td></tr>
+              <tr><td>Duże zakupy z VAT</td><td>✅ tak</td><td>Odzyskujesz VAT naliczony</td></tr>
+              <tr><td>Minimalne koszty z VAT</td><td>❌ nie</td><td>Nie ma co odliczać</td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Pułapka:</strong> doradztwo i usługi prawne = obowiązkowy VAT od dnia 1 (art. 113 ust. 13). SaaS, IT, marketing — zwolnienie domyślne.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== 02-zwolnienie-podmiotowe-240k ========== -->
+      <section class="slide-title" id="vat-02">
+        <div class="pill">VAT 02</div>
+        <h1>Zwolnienie podmiotowe<br>— limit 240k</h1>
+        <div class="byline">Art. 113 uVAT · co się wlicza, kilka spółek, pułapka nieruchomości</div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Zwolnienie 240k</div>
+        <h2>Próg zwolnienia</h2>
+        <div class="content">
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number">240k zł</div>
+              <div class="stat-label">limit roczny (od 2026)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">0%</div>
+              <div class="stat-label">VAT poniżej progu</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">art. 113</div>
+              <div class="stat-label">podstawa prawna</div>
+            </div>
+          </div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Jak działa:</strong> poniżej 240k zł rocznie → nie rejestrujesz się na VAT, nie naliczasz, nie odliczasz. Domyślny stan dla nowych spółek i freelancerów.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Zwolnienie 240k</div>
+        <h2>Co się wlicza do limitu?</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>✅ Wlicza się</h3>
+              <ul>
+                <li>Sprzedaż towarów w PL</li>
+                <li>Usługi z miejscem świadczenia w PL (art. 28c)</li>
+                <li>B2C tradycyjna do UE (miejsce = PL)</li>
+                <li><strong>Sprzedaż nieruchomości</strong> zwolniona z VAT (wyjątek!)</li>
+              </ul>
+            </div>
+            <div class="card-accent">
+              <h3>❌ NIE wlicza się</h3>
+              <ul>
+                <li>Reverse charge B2B UE (art. 28b)</li>
+                <li>Eksport usług poza UE</li>
+                <li>B2C elektroniczna UE przez OSS/MoR (art. 28k)</li>
+                <li>Większość zwolnień przedmiotowych art. 43</li>
+              </ul>
+            </div>
+          </div>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Kluczowa definicja:</strong> art. 2 pkt 22 uVAT — "sprzedaż" to usługi na terytorium kraju. Reverse charge to usługa poza PL → poza limitem.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Zwolnienie 240k</div>
+        <h2>Obowiązkowy VAT od dnia 1 (art. 113 ust. 13)</h2>
+        <div class="content">
+          <ul class="checklist">
+            <li>Usługi <strong>doradcze</strong> (podatkowe, prawne, zarządcze)</li>
+            <li>Usługi <strong>prawnicze</strong></li>
+            <li>Niektóre usługi jubilerskie</li>
+            <li>Niektóre dostawy wewnątrzwspólnotowe</li>
+          </ul>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Dla SaaS, IT, marketing, szkolenia online</strong> — zwykle NIE na tej liście. Można korzystać ze zwolnienia domyślnie.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Zwolnienie 240k</div>
+        <h2>Strategia: kilka spółek z osobnymi limitami</h2>
+        <div class="content">
+          <div class="vs-container">
+            <div class="card-soft">
+              <h3>✅ Legalne</h3>
+              <ul>
+                <li>Różne usługi/towary (A szkolenia, B e-booki)</li>
+                <li>Różna lokalizacja (WAW vs KRK)</li>
+                <li>Różny zespół</li>
+                <li>Różny rynek (B2B vs B2C)</li>
+                <li>Różny asortyment</li>
+              </ul>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="card-accent">
+              <h3>❌ Sztuczne (GAAR)</h3>
+              <ul>
+                <li>Ta sama oferta, dwa podmioty</li>
+                <li>Ta sama strona, ten sam zespół</li>
+                <li>"Przepinanie" sklepu co pół roku</li>
+                <li>Klon biznesu żeby ominąć limit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Art. 119a Ordynacji podatkowej (GAAR)</strong> — musi być <span class="highlight-accent">realny cel gospodarczy</span>. Klony biznesu są kwestionowane.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Zwolnienie 240k</div>
+        <h2>Pułapka: sprzedaż nieruchomości</h2>
+        <div class="content">
+          <div class="accent-box-secondary">
+            <p><strong>Wyjątek od zasady:</strong> sprzedaż nieruchomości zwolniona na podstawie <strong>art. 43 ust. 1 pkt 10/10a</strong> WLICZA SIĘ do limitu 240k — mimo że sama transakcja jest zwolniona z VAT.</p>
+          </div>
+          <div class="example-box" style="margin-top: 0.8em;">Spółka na art. 113, przychód roczny 150k zł.
+Sprzedaje lokal w 7. roku użytkowania za 300k zł.
+(zwolnienie art. 43 ust. 1 pkt 10)
+
+→ Sam lokal: VAT = 0 zł
+→ Kwota 300k zł wlicza się do limitu 240k
+→ Limit PRZEKROCZONY
+→ Rejestracja VAT od kolejnej transakcji</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Zwolnienie 240k</div>
+        <h2>Powrót do zwolnienia po VAT</h2>
+        <div class="content">
+          <ol class="steps">
+            <li><strong>Rejestracja VAT (VAT-R)</strong> po przekroczeniu limitu — naliczasz 23%</li>
+            <li>Przez <strong>cały pełny rok kalendarzowy</strong> obrót &lt; 240k zł</li>
+            <li>Od roku następnego <strong>wnioskujesz o powrót</strong> do zwolnienia</li>
+          </ol>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Przykład:</strong> przekroczenie w 2027 → VAT w 2028 → jeśli 2028 &lt; 240k → od 2029 powrót do zwolnienia.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">02 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Próg 2026</td><td><strong>240 000 zł</strong></td></tr>
+              <tr><td>Co wlicza się</td><td>Sprzedaż na PL (art. 2 pkt 22)</td></tr>
+              <tr><td>Reverse charge / MoR</td><td>NIE wlicza się</td></tr>
+              <tr><td>Sprzedaż nieruchomości (zwolniona)</td><td>Wlicza się (wyjątek!)</td></tr>
+              <tr><td>PKD z obowiązkowym VAT</td><td>Doradztwo, prawo</td></tr>
+              <tr><td>Kilka spółek</td><td>Legalne gdy różne realnie</td></tr>
+              <tr><td>Powrót do zwolnienia</td><td>Po pełnym roku &lt; 240k</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 03-miejsce-swiadczenia-uslug ========== -->
+      <section class="slide-title" id="vat-03">
+        <div class="pill">VAT 03 ⭐</div>
+        <h1>Miejsce świadczenia<br>usług</h1>
+        <div class="byline">Fundament cross-border · matryca B2B/B2C × PL/UE/poza UE</div>
+      </section>
+
+      <section class="slide-section">
+        <div class="pill">03 · Fundament</div>
+        <h2>Bez tego reszta kursu bez sensu</h2>
+        <p class="sub">Miejsce świadczenia = kraj, w którym transakcja jest opodatkowana VAT</p>
+      </section>
+
+      <section>
+        <div class="pill">03 · Miejsce świadczenia</div>
+        <h2>Kluczowe pytanie</h2>
+        <div class="content">
+          <div class="accent-box-accent">
+            <p><strong>Miejsce świadczenia</strong> decyduje: <span class="highlight-accent">KTO rozlicza VAT</span> (Ty czy klient), <span class="highlight-accent">GDZIE</span> (PL czy inny kraj), <span class="highlight-accent">JAKA stawka</span> (23% PL, 19% DE, 27% HU...), <span class="highlight-accent">CZY wlicza się do 240k</span>.</p>
+          </div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p>To <strong>nie musi</strong> być kraj Twojej siedziby ani kraj klienta ani kraj serwera. To <strong>kategoria prawna</strong> określona przepisami UE.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">03 · Miejsce świadczenia</div>
+        <h2>Dwie fundamentalne zmienne</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>1. Kto jest klientem?</h3>
+              <p><strong>B2B</strong> — firma z ważnym VAT UE (test: VIES)</p>
+              <p><strong>B2C</strong> — konsument lub firma bez VAT UE</p>
+            </div>
+            <div class="card-secondary">
+              <h3>2. Jaki typ usługi?</h3>
+              <p><strong>Elektroniczna</strong> — SaaS, streaming, e-booki (zautomatyzowana)</p>
+              <p><strong>Tradycyjna</strong> — konsultacje, szkolenia live, doradztwo</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">03 · Miejsce świadczenia</div>
+        <h2>Matryca master — 8 scenariuszy</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Klient</th><th>Typ usługi</th><th>Kraj klienta</th><th>Miejsce VAT</th><th>Kto rozlicza</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>B2B</td><td>dowolna</td><td>PL</td><td>PL</td><td>Ty (art. 28c)</td></tr>
+              <tr><td>B2B</td><td>dowolna</td><td><strong>UE (VAT UE)</strong></td><td>Kraj nabywcy</td><td><strong>Nabywca (RC, art. 28b)</strong></td></tr>
+              <tr><td>B2B</td><td>dowolna</td><td>poza UE</td><td>Kraj nabywcy</td><td>Eksport 0%</td></tr>
+              <tr><td>B2C</td><td>tradycyjna</td><td>PL</td><td>PL</td><td>Ty</td></tr>
+              <tr><td>B2C</td><td>tradycyjna</td><td>UE</td><td><strong>PL</strong> (sic!)</td><td>Ty (art. 28c)</td></tr>
+              <tr><td>B2C</td><td><strong>elektroniczna</strong></td><td>UE &lt; 10k EUR</td><td>PL</td><td>Ty (art. 59a)</td></tr>
+              <tr><td>B2C</td><td><strong>elektroniczna</strong></td><td>UE ≥ 10k EUR</td><td><strong>Kraj klienta</strong></td><td>Ty przez OSS / MoR (art. 28k)</td></tr>
+              <tr><td>B2C</td><td>dowolna</td><td>poza UE</td><td>Poza UE</td><td>MoR lub poza systemem</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">03 · Miejsce świadczenia</div>
+        <h2>Definicja usługi elektronicznej</h2>
+        <div class="content">
+          <div class="accent-box">
+            <p><strong>Rozporządzenie 282/2011 art. 7:</strong> usługa elektroniczna to taka, która jest świadczona przez internet, w dużej mierze <strong>zautomatyzowana</strong>, wymaga <strong>minimalnego udziału człowieka</strong>, nie istnieje bez technologii IT.</p>
+          </div>
+          <div class="vs-container" style="margin-top: 0.8em;">
+            <div class="card-soft">
+              <h3>✅ Elektroniczne</h3>
+              <ul>
+                <li>SaaS, subskrypcje aplikacji</li>
+                <li>E-booki, streaming, kursy on-demand</li>
+                <li>Hostingi, serwery, narzędzia online</li>
+                <li>Reklamy automatyczne, SEO tools</li>
+              </ul>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="card-accent">
+              <h3>❌ NIE elektroniczne</h3>
+              <ul>
+                <li>Konsultacje 1:1 (Zoom)</li>
+                <li>Szkolenia live, webinary z interakcją</li>
+                <li>Coaching, doradztwo, audyt</li>
+                <li>Programowanie na zamówienie</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">03 · Miejsce świadczenia</div>
+        <h2>Jak odróżnić B2B od B2C w praktyce</h2>
+        <div class="content">
+          <div class="accent-box-secondary">
+            <p><strong>Test: ważny numer VAT UE w systemie VIES</strong> (vies.europa.eu)</p>
+          </div>
+          <ol class="steps" style="margin-top: 0.8em;">
+            <li>Klient zaznacza "kupuję jako firma" → pole VAT UE number</li>
+            <li>System sprawdza numer w VIES real-time</li>
+            <li>Ważny ✅ → FV z adnotacją "reverse charge" (art. 28b)</li>
+            <li>Brak/nieważny ❌ → traktujesz jak B2C (OSS/MoR)</li>
+          </ol>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Pułapka:</strong> niemiecki freelancer bez VAT UE (Kleinunternehmer) = dla Ciebie B2C mimo że jest firmą.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">03 · Miejsce świadczenia</div>
+        <h2>Dowody kraju klienta (B2C)</h2>
+        <div class="content">
+          <div class="accent-box">
+            <p><strong>Art. 24b Rozp. 282/2011:</strong> minimum <span class="highlight">2 niesprzeczne dowody</span></p>
+          </div>
+          <ul class="checklist" style="margin-top: 0.8em;">
+            <li>Adres rozliczeniowy (billing address)</li>
+            <li>Adres IP</li>
+            <li>Numer telefonu (prefiks kraju)</li>
+            <li>Bank / lokalizacja metody płatności</li>
+            <li>Kod BIN karty płatniczej</li>
+            <li>Inne istotne informacje handlowe</li>
+          </ul>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Konflikt:</strong> billing DE + IP PL + karta PL → rozstrzygasz większością dowodów, dokumentujesz decyzję.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">03 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Od czego zależy miejsce</td><td>Typ klienta (B2B/B2C) × typ usługi (elektr./tradycyjna)</td></tr>
+              <tr><td>B2B UE z VAT UE</td><td>Kraj nabywcy — reverse charge (art. 28b)</td></tr>
+              <tr><td>B2B poza UE</td><td>Eksport 0% (art. 28b)</td></tr>
+              <tr><td>B2C tradycyjna UE</td><td>PL VAT (art. 28c)</td></tr>
+              <tr><td>B2C elektroniczna &lt; 10k EUR</td><td>PL VAT (art. 59a)</td></tr>
+              <tr><td>B2C elektroniczna ≥ 10k EUR</td><td>Kraj klienta (art. 28k)</td></tr>
+              <tr><td>Test B2B vs B2C</td><td>Ważny VAT UE w VIES</td></tr>
+              <tr><td>Dowody kraju klienta</td><td>Min. 2 niesprzeczne (art. 24b)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 04-reverse-charge-b2b-ue ========== -->
+      <section class="slide-title" id="vat-04">
+        <div class="pill">VAT 04</div>
+        <h1>Reverse charge<br>B2B cross-border UE</h1>
+        <div class="byline">Dwa kierunki · VAT-UE bez utraty art. 113 · nie wlicza się do 240k</div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>Co to jest reverse charge?</h2>
+        <div class="content">
+          <div class="accent-box">
+            <p><strong>Reverse charge</strong> (odwrotne obciążenie) = przerzucenie obowiązku rozliczenia VAT ze <strong>sprzedawcy</strong> na <strong>nabywcę</strong>.</p>
+          </div>
+          <div class="example-box" style="margin-top: 0.8em;">Klasycznie (B2B PL):
+Ty (PL) ──[1000 + 230 VAT]──> Firma PL
+Odprowadzasz 230 zł do US.
+
+Reverse charge (B2B UE):
+Ty (PL) ──[1000 bez VAT]──> Firma DE
+Firma DE sama nalicza DE VAT 19% u siebie
+i sama go odlicza → neutralne.
+
+Ty NIE naliczasz VAT.
+Wystawiasz FV 0% z adnotacją "reverse charge".</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>Dwa kierunki — oba dotyczą Aromagic</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>A) Aromagic SPRZEDAJE</h3>
+              <p>Przykład: DE sp. z o.o. kupuje subskrypcję</p>
+              <p><strong>Ty wystawiasz:</strong> FV 0% z adnotacją "reverse charge"</p>
+              <p>Klient rozlicza DE VAT u siebie</p>
+            </div>
+            <div class="card-accent">
+              <h3>B) Aromagic KUPUJE</h3>
+              <p>Przykład: prowizja Stripe IE</p>
+              <p><strong>Stripe wystawia:</strong> FV bez VAT z RC</p>
+              <p>Aromagic samonalicza PL VAT 23%</p>
+              <p>VATowiec: <strong>zero-sum</strong> / Art. 113: <strong>płaci do US bez odliczenia</strong></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>Warunki RC (sprzedaż do UE) — wszystkie muszą być spełnione</h2>
+        <div class="content">
+          <ul class="checklist">
+            <li><strong>Nabywca</strong> jest podatnikiem VAT w innym kraju UE</li>
+            <li><strong>Ma ważny numer VAT UE</strong> — sprawdzenie w VIES (vies.europa.eu)</li>
+            <li><strong>Siedziba nabywcy</strong> poza PL</li>
+            <li><strong>Aromagic ma zarejestrowany VAT-UE</strong> (VAT-R pkt C.3)</li>
+            <li><strong>Faktura zawiera adnotację</strong> "reverse charge" / "odwrotne obciążenie" + numer VAT UE nabywcy</li>
+          </ul>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Jeśli którykolwiek warunek NIE spełniony</strong> — to nie RC. Najczęściej traktujesz jak B2C (OSS/MoR).</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>VAT-UE bez łamania art. 113</h2>
+        <div class="content">
+          <div class="accent-box-accent">
+            <p><strong>Kluczowy fakt:</strong> można być jednocześnie <span class="highlight-accent">zwolnionym z VAT (art. 113)</span> i <span class="highlight-accent">zarejestrowanym do VAT UE (art. 97)</span>.</p>
+          </div>
+          <div class="cards-2" style="margin-top: 0.8em;">
+            <div class="card">
+              <h3>Rejestracja VAT-UE</h3>
+              <p>Formularz <strong>VAT-R</strong>, pkt C.3 (transakcje wewnątrzwspólnotowe). Jednorazowo, przed pierwszą transakcją.</p>
+            </div>
+            <div class="card">
+              <h3>Deklaracja miesięczna</h3>
+              <p><strong>VAT-UE</strong> (informacja podsumowująca) — do 25. następnego miesiąca. Wykaz sprzedaży RC do podatników UE.</p>
+            </div>
+          </div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Dla Aromagic:</strong> rejestracja VAT-UE razem ze spółką — bez tego Tor 2 (B2B UE) nie działa.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>Dlaczego RC nie zjada limitu 240k</h2>
+        <div class="content">
+          <div class="accent-box">
+            <p><strong>Logika prawna:</strong></p>
+            <p>Art. 113 ust. 1 — limit 240k dotyczy "sprzedaży"</p>
+            <p>Art. 2 pkt 22 — "sprzedaż" = usługi <strong>na terytorium kraju</strong></p>
+            <p>Art. 28b — usługa B2B cross-border = miejsce świadczenia <strong>poza PL</strong></p>
+            <p>→ Nie jest "sprzedażą" → poza limitem art. 113 ✅</p>
+          </div>
+          <div class="example-box" style="margin-top: 0.8em;">Przykład dla Aromagic (rok):
+Sprzedaż do PL klientów:          80 000 zł
+Sprzedaż B2B DE (reverse charge): 150 000 zł
+Sprzedaż B2C non-PL przez MoR:    300 000 zł
+─────────────────────────────────────────
+RAZEM przychód:                   530 000 zł
+Liczone do limitu 240k:          tylko 80 000 zł ✅</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>Kiedy Aromagic KUPUJE od UE (Stripe IE, AWS)</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Status Aromagic</th><th>VAT naliczony (23% PL)</th><th>VAT należny (23% PL)</th><th>Realny koszt</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Art. 113</td><td>— (nie odliczasz)</td><td>230 zł do US</td><td><strong style="color: #c44;">1230 zł</strong></td></tr>
+              <tr><td>VATowiec</td><td>+230 zł odliczasz</td><td>−230 zł do US</td><td><strong style="color: var(--primary-dark);">1000 zł (zero-sum)</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Dla Aromagic:</strong> przy Stripe + AWS + narzędziach ~25–50k zł rocznie → na art. 113 płacisz <strong>5,7–11,5k zł VAT do US bez odliczania</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Reverse charge</div>
+        <h2>Poza UE — eksport usług</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>Sprzedaż B2B poza UE</h3>
+              <p>USA, UK (post-Brexit), Szwajcaria, Norwegia</p>
+              <p><strong>Eksport usług 0%</strong> (art. 28b analogicznie)</p>
+              <p>Adnotacja "Eksport usług" / "Zero-rated"</p>
+              <p>Brak VIES — dokumentacja ręczna</p>
+            </div>
+            <div class="card-secondary">
+              <h3>Zakup B2B poza UE</h3>
+              <p>Np. OpenAI, amerykański SaaS</p>
+              <p>Zwykle NIE nalicza VAT</p>
+              <p>Aromagic NIE ma obowiązku samonalizać</p>
+              <p>Wyjątek: niektóre procedury (IOSS) — konsultacja</p>
+            </div>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Wniosek:</strong> eksport poza UE = 0%, nie wlicza się do 240k. Dla Aromagic przychód z klientów USA/UK liczy się jako eksport.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">04 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Reverse charge — dla kogo</td><td>B2B cross-border UE</td></tr>
+              <tr><td>Wymaga VAT-UE?</td><td>Tak, obie strony</td></tr>
+              <tr><td>Łamie zwolnienie art. 113?</td><td><strong>NIE</strong> — można mieć jednocześnie</td></tr>
+              <tr><td>Adnotacja na FV</td><td>"Reverse charge" / "Odwrotne obciążenie" + VAT UE</td></tr>
+              <tr><td>Wlicza się do 240k?</td><td><strong>NIE</strong> (art. 2 pkt 22)</td></tr>
+              <tr><td>VAT naliczony (art. 113, zakupy UE)</td><td>Płacisz 23%, NIE odliczasz</td></tr>
+              <tr><td>VAT naliczony (VATowiec, zakupy UE)</td><td>Zero-sum, odliczasz</td></tr>
+              <tr><td>Częstotliwość VAT-UE</td><td>Miesięcznie (do 25.)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 05-b2c-ue-prog-10k-oss ========== -->
+      <section class="slide-title" id="vat-05">
+        <div class="pill">VAT 05</div>
+        <h1>B2C cross-border UE<br>— próg 10k EUR i OSS</h1>
+        <div class="byline">Uproszczenie dla małych · One Stop Shop · 27 stawek krajów UE</div>
+      </section>
+
+      <section>
+        <div class="pill">05 · B2C UE</div>
+        <h2>Próg 10 000 EUR — furtka dla małych</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Sprzedaż cross-border B2C w UE</th><th>Co stosujesz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>&lt; 10 000 EUR/rok</td><td><strong>Polski VAT 23%</strong> na wszystko (prościej)</td></tr>
+              <tr><td>≥ 10 000 EUR/rok</td><td><strong>Stawka kraju klienta</strong> — OSS lub MoR</td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Szczegóły:</strong> limit łączny w całej UE (nie per kraj). Liczy się bieżący rok i poprzedni. Po przekroczeniu — obowiązek od tej transakcji. Możesz dobrowolnie zrezygnować z progu.</p>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Uwaga dla art. 113:</strong> próg 10k wymaga PL VAT 23% → musisz być VATowcem. <span class="highlight-accent">Dla zwolnionego: zawsze MoR dla B2C UE.</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">05 · B2C UE</div>
+        <h2>OSS — One Stop Shop</h2>
+        <div class="content">
+          <div class="accent-box-secondary">
+            <p><strong>Po co:</strong> bez OSS musiałbyś rejestrować się w każdym kraju UE osobno. OSS to jeden punkt rozliczeniowy.</p>
+          </div>
+          <table style="margin-top: 0.8em;">
+            <thead>
+              <tr><th>Aspekt</th><th>OSS</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Rejestracja</td><td>Formularz <strong>VIU-R</strong> (e-Deklaracje PL)</td></tr>
+              <tr><td>Deklaracja</td><td><strong>VIU-DO</strong> kwartalnie</td></tr>
+              <tr><td>Stawki</td><td>Per kraj klienta (Ty musisz znać)</td></tr>
+              <tr><td>Płatność</td><td>Jeden przelew EUR do PL US → rozdziela</td></tr>
+              <tr><td>Obszar</td><td>Tylko 27 krajów UE (UK/CH/NO — oddzielnie)</td></tr>
+              <tr><td>Wymaga VATowcostwa</td><td>Tak (art. 113 wyklucza)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">05 · B2C UE</div>
+        <h2>Terminy VIU-DO kwartalnie</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Kwartał</th><th>Okres</th><th>Termin złożenia</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Q1</td><td>styczeń – marzec</td><td><strong>30 kwietnia</strong></td></tr>
+              <tr><td>Q2</td><td>kwiecień – czerwiec</td><td><strong>31 lipca</strong></td></tr>
+              <tr><td>Q3</td><td>lipiec – wrzesień</td><td><strong>31 października</strong></td></tr>
+              <tr><td>Q4</td><td>październik – grudzień</td><td><strong>31 stycznia</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">05 · B2C UE</div>
+        <h2>Stawki VAT w krajach UE (kluczowe rynki)</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Kraj</th><th>Stawka</th><th>Uwagi</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Niemcy</td><td><strong>19%</strong></td><td>Największy rynek DACH dla Aromagic</td></tr>
+              <tr><td>Austria</td><td>20%</td><td>DACH</td></tr>
+              <tr><td>Rumunia</td><td><strong>19%</strong></td><td>Ważny rynek wg planu Aromagic</td></tr>
+              <tr><td>Francja</td><td>20%</td><td>—</td></tr>
+              <tr><td>Włochy</td><td>22%</td><td>—</td></tr>
+              <tr><td>Hiszpania</td><td>21%</td><td>—</td></tr>
+              <tr><td>Węgry</td><td><strong>27%</strong></td><td>Najwyższa w UE</td></tr>
+              <tr><td>Luksemburg</td><td>17%</td><td>Najniższa w UE</td></tr>
+              <tr><td>Polska</td><td>23%</td><td>Rynek krajowy</td></tr>
+              <tr><td>Szwajcaria</td><td>8,1%</td><td><strong>Poza UE</strong> — OSS nie działa</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">05 · B2C UE</div>
+        <h2>OSS vs MoR vs poniżej progu</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Kryterium</th><th>&lt; 10k EUR (PL 23%)</th><th>Własny OSS</th><th>MoR</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Wymaga VATowcostwa</td><td>Tak</td><td>Tak</td><td><strong>NIE</strong></td></tr>
+              <tr><td>Rejestracja</td><td>VAT-R + zwykły reżim</td><td>+ VIU-R</td><td>Zero</td></tr>
+              <tr><td>Deklaracje</td><td>JPK_V7 miesięcznie</td><td>+ VIU-DO kwartalnie</td><td>1 FV/mies od MoR</td></tr>
+              <tr><td>Stawki</td><td>PL 23% na wszystko</td><td>Per kraj</td><td>MoR automatycznie</td></tr>
+              <tr><td>Koszt</td><td>Tylko VAT</td><td>+ czas księgowej</td><td>~5–8% prowizji</td></tr>
+              <tr><td>Dla kogo</td><td>Mikro (&lt;10k)</td><td>Duża skala</td><td>Start/średnia skala</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">05 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Miejsce VAT B2C UE elektroniczne</td><td>Kraj klienta (art. 28k)</td></tr>
+              <tr><td>Próg uproszczenia</td><td><strong>10 000 EUR/rok</strong> cross-border</td></tr>
+              <tr><td>Poniżej progu</td><td>PL VAT 23% (wymaga VATowcostwa)</td></tr>
+              <tr><td>Powyżej progu</td><td>Stawka kraju klienta — OSS lub MoR</td></tr>
+              <tr><td>OSS wymaga VATowcostwa?</td><td>Tak</td></tr>
+              <tr><td>Zwolnienie art. 113 + OSS?</td><td>NIE — wtedy MoR</td></tr>
+              <tr><td>Zabiera limit 240k?</td><td>NIE — to odrębne progi</td></tr>
+              <tr><td>Liczy się do 10k</td><td>Tylko B2C UE elektroniczne</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 06-merchant-of-record ========== -->
+      <section class="slide-title" id="vat-06">
+        <div class="pill">VAT 06</div>
+        <h1>Merchant of Record<br>(MoR)</h1>
+        <div class="byline">Platforma jako oficjalny sprzedawca · Paddle, Stripe MP, Lemon Squeezy</div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Problem, który MoR rozwiązuje</h2>
+        <div class="content">
+          <div class="accent-box-accent">
+            <p>Sprzedajesz do konsumentów w <strong>25 krajach</strong>. Każdy ma własną stawkę VAT, własny próg, własne deklaracje, własne terminy, własny język.</p>
+          </div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>OSS</strong> rozwiązuje 27 krajów UE. Ale <strong>UK, CH, NO, USA, AU</strong> — każdy osobno. Dla małej spółki to praca na etat księgowej.</p>
+          </div>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>MoR</strong> outsourcuje to wszystko za ~5–8% prowizji.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Definicja — zmiana roli</h2>
+        <div class="content">
+          <div class="example-box">Bez MoR:
+  Aromagic ─── sprzedaż ───> Klient DE
+  (Aromagic rozlicza DE VAT 19%)
+
+Z MoR:
+  Aromagic ── eksport B2B ──> Stripe IE ── sprzedaż B2C ──> Klient DE
+  (reverse charge 0%)         (Stripe rozlicza DE VAT)</div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>MoR przejmuje:</strong> rozliczanie VAT lokalnego, wystawianie faktur konsumentom, refundy, chargebacki, compliance.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Mechanizm prawny — reverse charge pod spodem</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>Transakcja 1: Aromagic → MoR</h3>
+              <p><strong>B2B cross-border</strong> (MoR = firma z VAT UE)</p>
+              <p>Miejsce: kraj MoR (IE dla Stripe) — art. 28b</p>
+              <p>Stawka: <strong>0% reverse charge</strong></p>
+              <p>Poza limitem 240k (art. 2 pkt 22)</p>
+            </div>
+            <div class="card-secondary">
+              <h3>Transakcja 2: MoR → klient końcowy</h3>
+              <p><strong>B2C</strong> (MoR sprzedaje konsumentowi)</p>
+              <p>Miejsce: kraj klienta (DE, FR, UK...)</p>
+              <p>Stawka: lokalna VAT/sales tax</p>
+              <p>MoR rozlicza przez własny OSS</p>
+            </div>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Kluczowe:</strong> Ty masz jednego klienta B2B (MoR). MoR ma dużo klientów B2C — to jego problem, nie Twój.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Platformy MoR — porównanie</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Platforma</th><th>Prowizja</th><th>Siedziba</th><th>Specjalność</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Paddle</strong></td><td>5% + $0,50</td><td>UK</td><td>SaaS; <strong>brak "exclude PL"</strong></td></tr>
+              <tr><td>FastSpring</td><td>5,9–8,9%</td><td>USA</td><td>Digital goods, B2C</td></tr>
+              <tr><td>Lemon Squeezy</td><td>5% + $0,50</td><td>USA</td><td>Indie SaaS, startup-friendly</td></tr>
+              <tr><td><strong>Stripe Managed Payments</strong></td><td>~0,4–1% ekstra + std fee</td><td>Irlandia</td><td><strong>Najlepszy dla hybrydy</strong> (flag per-session)</td></tr>
+              <tr><td>Gumroad</td><td>10%</td><td>USA</td><td>Digital products, kursy</td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Dla Aromagic:</strong> Stripe MP jest jedynym, który obsługuje hybrydę (PL Billing + non-PL MP na jednym koncie).</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Plusy</h2>
+        <div class="content">
+          <ul class="checklist">
+            <li><strong>Zero VAT compliance</strong> dla zagranicy — MoR zna stawki 27 krajów + UK/CH/NO/USA</li>
+            <li>Nie składasz VIU-DO, UK VAT return, Swiss VAT</li>
+            <li><strong>Ochrona limitu 240k</strong> — sprzedaż przez MoR = RC poza limitem</li>
+            <li>Obsługa poza UE (UK, CH, NO, USA) — rejestracje lokalne MoR</li>
+            <li>Fraud management + chargebacki + refundy automatyczne</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Minusy</h2>
+        <div class="content">
+          <ul class="checklist" style="list-style: none;">
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>Prowizja 5–8%</strong> — przy 500 klientach Aromagic: ~24k zł/rok</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Mniej kontroli nad checkout (branded limited, logo MoR)</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>CIT brutto vs netto</strong> — nierozstrzygnięte; ustal z księgową</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Refund flow trzeba synchronizować z CRM</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Lock-in — migracja MoR to miesiące pracy</li>
+          </ul>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Problem CIT:</strong> przychód z MoR jako brutto = szybciej przekroczysz 2 mln EUR małego podatnika → 19% CIT zamiast 9%. Jako netto = lepiej.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · MoR</div>
+        <h2>Pułapka: klauzula GAAR</h2>
+        <div class="content">
+          <div class="accent-box-accent">
+            <p><strong>Art. 119a Ordynacji podatkowej</strong> — organ może uznać, że rzeczywista sprzedaż jest do konsumenta, a MoR to "techniczny pośrednik", i zakwestionować RC.</p>
+          </div>
+          <ol class="steps" style="margin-top: 0.8em;">
+            <li>Umowa ze Stripe MP formalnie czyni Stripe sprzedawcą (Stripe wystawia FV klientowi)</li>
+            <li>Dokumentacja: ToS, mail od Stripe Sales, faktury za prowizję, payout reports</li>
+            <li><strong>Interpretacja KIS</strong> (40 zł + 2–4k doradca) przy obrocie &gt; ~300k/rok</li>
+            <li>Pozytywna interpretacja = spokój przy kontroli UCS</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">06 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Co to MoR</td><td>Platforma = formalny sprzedawca wobec klienta</td></tr>
+              <tr><td>Mechanizm prawny</td><td>RC (Aromagic→MoR) + B2C (MoR→klient)</td></tr>
+              <tr><td>Top MoR dla SaaS</td><td>Paddle, Stripe MP, Lemon Squeezy</td></tr>
+              <tr><td>Dla hybrydy PL/non-PL</td><td><strong>Stripe Managed Payments</strong></td></tr>
+              <tr><td>Prowizja</td><td>5–8% (Paddle) / 0,4–1% ekstra (Stripe MP)</td></tr>
+              <tr><td>Wlicza się do 240k?</td><td>NIE (reverse charge)</td></tr>
+              <tr><td>Wymaga VATowcostwa?</td><td>NIE — można na art. 113</td></tr>
+              <tr><td>Interpretacja KIS</td><td>Rekomendowana przy &gt; 300k/rok</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 07-architektura-hybrydowa-stripe ========== -->
+      <section class="slide-title" id="vat-07">
+        <div class="pill">VAT 07 ⭐</div>
+        <h1>Architektura hybrydowa<br>Stripe — trzy tory</h1>
+        <div class="byline">PL Billing · UE B2B VIES RC · MoR dla reszty · na jednym koncie</div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Problem: pełny MoR nie jest optymalny</h2>
+        <div class="content">
+          <div class="accent-box-accent">
+            <p>Jeśli wszyscy klienci idą przez MoR, <strong>polscy klienci też</strong>. Skutek:</p>
+          </div>
+          <ul class="checklist" style="margin-top: 0.8em; list-style: none;">
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Tracisz zwolnienie art. 113 w praktyce — MoR dolicza 23% PL VAT do cen PL</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Tracisz ~5% prowizji na każdym PL kliencie niepotrzebnie</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> B2B UE z VIES niepotrzebnie przez MoR — RC bezpośrednio byłby prościej</li>
+          </ul>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Rozwiązanie:</strong> Stripe Managed Payments pozwala na flag per-session → <span class="highlight">dwa tryby równocześnie</span> na jednym koncie.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Trzy tory na jednym koncie Stripe</h2>
+        <div class="content">
+          <div class="cards-3">
+            <div class="card-soft">
+              <h3>Tor 1: PL</h3>
+              <p><strong>Kryterium:</strong> billing_country == PL</p>
+              <p><strong>Jak:</strong> Stripe Billing (Aromagic = sprzedawca)</p>
+              <p>Art. 113: bez VAT<br>VATowiec: +23% PL VAT</p>
+              <p><strong>Wlicza do 240k: TAK</strong></p>
+            </div>
+            <div class="card-secondary">
+              <h3>Tor 2: UE B2B VIES</h3>
+              <p><strong>Kryterium:</strong> non-PL + ważny VAT UE</p>
+              <p><strong>Jak:</strong> Stripe Billing + adnotacja RC</p>
+              <p>Stawka 0% (klient rozlicza u siebie)</p>
+              <p><strong>Wlicza do 240k: NIE</strong></p>
+            </div>
+            <div class="card-accent">
+              <h3>Tor 3: reszta</h3>
+              <p><strong>Kryterium:</strong> non-PL bez VAT UE + poza UE</p>
+              <p><strong>Jak:</strong> Stripe MP (Stripe = MoR)</p>
+              <p>Stripe rozlicza VAT lokalny</p>
+              <p><strong>Wlicza do 240k: NIE</strong></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Logika routingu w checkout</h2>
+        <div class="content">
+          <div class="example-box">vat_ue = customer.vat_number
+billing_country = customer.billing_country
+is_vies_valid = vies_lookup(vat_ue) if vat_ue else False
+
+if billing_country == "PL":
+    session_mode = "billing_pl"          # Tor 1
+elif is_vies_valid and vies_country == billing_country:
+    session_mode = "billing_rc_ue"       # Tor 2
+else:
+    session_mode = "managed_payments"    # Tor 3</div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Walidacje antywpadkowe:</strong> VIES real-time z fallback cache, country cross-check (DE VAT vs FR billing = B2C), BIN karty jako dodatkowy dowód.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Porównanie trzech modeli</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Kryterium</th><th>Pełny OSS</th><th>Pełny MoR</th><th>Hybryda 3-torowa</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Rejestracja VAT w PL</td><td>Tak + VIU-R</td><td>Zależy</td><td>Opcjonalnie</td></tr>
+              <tr><td>VAT na klientach PL</td><td>23%</td><td>23% (MoR)</td><td><strong>0% (art. 113)</strong></td></tr>
+              <tr><td>B2B UE</td><td>RC 0%</td><td>przez MoR</td><td><strong>RC 0% bezpośrednio</strong></td></tr>
+              <tr><td>B2C UE</td><td>OSS (lokalne)</td><td>MoR</td><td>MoR (Tor 3)</td></tr>
+              <tr><td>Poza UE (UK/CH/USA)</td><td>Lokalne rejestracje</td><td>MoR</td><td>MoR (Tor 3)</td></tr>
+              <tr><td>Prowizja MoR</td><td>0%</td><td>5–8% na wszystkich</td><td>5–8% <strong>tylko Tor 3</strong></td></tr>
+              <tr><td>Ochrona limitu 240k</td><td>Strata</td><td>Tak</td><td>Tak</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Przychód netto — przykład SaaS 700k PLN</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Scenariusz</th><th>Przychód netto</th><th>Komentarz</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Pełny OSS (VATowiec)</td><td>~560k zł</td><td>VAT 23% od wszystkiego, pełne ops</td></tr>
+              <tr><td>Pełny MoR</td><td>~645–658k zł</td><td>Strata VAT PL + 5–8% na wszystkich</td></tr>
+              <tr><td><strong>Hybryda</strong></td><td><strong class="highlight">~655–672k zł</strong></td><td><strong>Marża PL (art. 113), MoR tylko non-PL</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Przewaga hybrydy:</strong> ~10–27k PLN/rok przy tej skali. Rośnie z przychodem — % PL w limicie spada dopiero powyżej ~1,2 mln PLN.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Pułapki i ryzyka</h2>
+        <div class="content">
+          <div class="cards-2x2">
+            <div class="card-accent">
+              <h3>GAAR (art. 119a OP)</h3>
+              <p>Organ może zakwestionować RC. <strong>Mitygacja:</strong> interpretacja KIS, dokumentacja Stripe</p>
+            </div>
+            <div class="card-accent">
+              <h3>CIT brutto vs netto</h3>
+              <p>Raportowanie MoR: ustal z księgową przed startem. Wpływa na limit 2 mln EUR</p>
+            </div>
+            <div class="card-accent">
+              <h3>Refund flow</h3>
+              <p>Różne w Billing vs MP. Ops musi wiedzieć którym torem szła oryginalna transakcja</p>
+            </div>
+            <div class="card-accent">
+              <h3>VPN / fałszywa lokalizacja</h3>
+              <p>PL klient + VPN + zagraniczna karta → Tor 3. <strong>Server-side:</strong> odrzuć MP gdy billing PL</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Hybryda Stripe</div>
+        <h2>Etapy wdrożenia</h2>
+        <div class="content">
+          <ol class="steps">
+            <li><strong>Etap 0</strong> — Rejestracja VAT-UE (VAT-R pkt C.3), decyzja CIT (brutto/netto), konsultacja księgowa</li>
+            <li><strong>Etap 1</strong> — Konto Stripe, MP ToS, test 3 CheckoutSessions (po jednej na tor) w sandboxie</li>
+            <li><strong>Etap 2</strong> — Router server-side: VIES lookup, decyzja Tor 1/2/3, walidacja antywpadkowa</li>
+            <li><strong>Etap 3</strong> — Księgowość: FV PL (Tor 1), RC FV (Tor 2), payout reports (Tor 3), monitoring 240k tylko Tor 1</li>
+            <li><strong>Etap 4</strong> — Dokumentacja: mail Stripe Sales, logi CheckoutSession, VIES screenshots dla Tor 2</li>
+          </ol>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">07 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Dlaczego hybryda</td><td>Bez VAT PL + RC UE + MoR dla reszty</td></tr>
+              <tr><td>Ile torów</td><td>3: PL (Billing), UE B2B VIES (Billing+RC), reszta (MP)</td></tr>
+              <tr><td>MoR obsługujący hybrydę</td><td><strong>Stripe Managed Payments</strong></td></tr>
+              <tr><td>Paddle do hybrydy?</td><td>NIE — brak "exclude country"</td></tr>
+              <tr><td>Wymaga rejestracji VAT?</td><td>NIE (art. 113 + VAT-UE OK)</td></tr>
+              <tr><td>Wlicza się do 240k</td><td>Tylko Tor 1</td></tr>
+              <tr><td>Monitor limitu PL</td><td>Alert przy 180k zł Tor 1</td></tr>
+              <tr><td>Interpretacja KIS</td><td>Rekomendowana &gt; 300k obrotu</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 08-ujemny-vat-i-kiedy-rejestracja ========== -->
+      <section class="slide-title" id="vat-08">
+        <div class="pill">VAT 08</div>
+        <h1>Ujemny VAT + kiedy<br>się zarejestrować</h1>
+        <div class="byline">Nadwyżka naliczonego · wzór decyzyjny · scenariusze</div>
+      </section>
+
+      <section>
+        <div class="pill">08 · Ujemny VAT</div>
+        <h2>Czym jest ujemny VAT</h2>
+        <div class="content">
+          <div class="accent-box">
+            <p><strong>Ujemny VAT:</strong> VAT naliczony (zakupy) &gt; VAT należny (sprzedaż)</p>
+            <p>Wynik: <span class="highlight">zwrot z US</span> lub przeniesienie nadwyżki</p>
+          </div>
+          <div class="cards-3" style="margin-top: 0.8em;">
+            <div class="card">
+              <h3>Scenariusz 1</h3>
+              <p>Niższa stawka sprzedaży niż zakupów</p>
+              <p>Księgarnia 5% vs transport 23%</p>
+            </div>
+            <div class="card">
+              <h3>Scenariusz 2</h3>
+              <p>Eksport / reverse charge</p>
+              <p>80% non-PL (jak Aromagic jako VATowiec)</p>
+            </div>
+            <div class="card">
+              <h3>Scenariusz 3</h3>
+              <p>Inwestycja początkowa</p>
+              <p>Duży VAT z zakupów sprzętu, mała sprzedaż</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">08 · Ujemny VAT</div>
+        <h2>Przykład: księgarnia internetowa</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Pozycja</th><th>Netto</th><th>Stawka</th><th>VAT</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Sprzedaż książek</td><td>1 000 zł</td><td>5%</td><td>+50 zł (należny)</td></tr>
+              <tr><td>Zakup transportu</td><td>1 000 zł</td><td>23%</td><td>−230 zł (naliczony)</td></tr>
+              <tr><td><strong>Bilans</strong></td><td>—</td><td>—</td><td><strong class="highlight">−180 zł (do zwrotu)</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p>Księgarnia dostaje <strong>180 zł zwrotu</strong> z US.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">08 · Ujemny VAT</div>
+        <h2>Co zrobić z nadwyżką</h2>
+        <div class="content">
+          <div class="cards-2">
+            <div class="card-soft">
+              <h3>A) Zwrot z US</h3>
+              <p>Wniosek w JPK_V7 (checkbox "zwrot")</p>
+              <p><strong>Termin standardowy:</strong> 60 dni</p>
+              <p>Przyspieszony: 25 dni (trudne warunki)</p>
+            </div>
+            <div class="card-secondary">
+              <h3>B) Przeniesienie</h3>
+              <p>Zostawiasz nadwyżkę w rozliczeniu</p>
+              <p>Odliczasz w kolejnym miesiącu (gdy VAT należny większy)</p>
+              <p>Wybierasz gdy spodziewasz się wzrostu</p>
+            </div>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Rekomendacja dla SaaS z eksportem:</strong> zwracaj kwartalnie. Pieniądze w firmie bardziej przydatne niż "na koncie US".</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">08 · Kiedy dobrowolnie VAT</div>
+        <h2>Wzór decyzyjny</h2>
+        <div class="content">
+          <div class="example-box">Korzyść = VAT_naliczony_odzyskany (zakupy PL + UE zero-sum)
+Koszt   = VAT_należny_straty_PL_B2C
+        + VAT_należny_straty_PL_B2B_bez_VAT
+        + koszty_administracyjne (~3-5k/rok)
+
+Jeśli Korzyść > Koszt → rejestruj VAT.</div>
+          <div class="cards-2" style="margin-top: 0.8em;">
+            <div class="card-soft">
+              <h3>✅ Warto zarejestrować</h3>
+              <ul>
+                <li>Duża baza klientów non-PL (80% jak Aromagic)</li>
+                <li>Duże koszty z PL VAT (księgowość, sprzęt)</li>
+                <li>Duże koszty z UE RC (Stripe, AWS)</li>
+                <li>Eksport B2B UE (0% + zwrot krajowego)</li>
+                <li>Inwestycja początkowa (duży VAT naliczony)</li>
+              </ul>
+            </div>
+            <div class="card-accent">
+              <h3>❌ Nie warto</h3>
+              <ul>
+                <li>Głównie klienci PL B2C (zjadasz 23% marży)</li>
+                <li>Klienci PL B2B na art. 113 (nie odliczają)</li>
+                <li>Minimalne koszty z VAT (nie ma co odliczać)</li>
+                <li>Niechęć do dodatkowej admin (JPK miesięcznie)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">08 · Quick reference</div>
+        <h2>Ściągawka</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Kiedy ujemny VAT</td><td>Naliczony &gt; należny → nadwyżka</td></tr>
+              <tr><td>Kiedy się pojawia</td><td>Niska stawka sprzedaży, eksport 0%, inwestycja</td></tr>
+              <tr><td>Co zrobić</td><td>Zwrot z US (60 dni) lub przeniesienie</td></tr>
+              <tr><td>Częste błędy</td><td>VAT 23% na przesyłkę, zestawy stawką główną</td></tr>
+              <tr><td>Wzór decyzji VAT</td><td>Korzyść (odliczenia) vs Koszt (strata B2C + admin)</td></tr>
+              <tr><td>Koszt admin VAT</td><td>+2–4k zł/rok (księgowość, JPK)</td></tr>
+              <tr><td>Pełna analiza Aromagic</td><td>→ VAT 09</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========== 09-case-aromagic ========== -->
+      <section class="slide-title" id="vat-09">
+        <div class="pill">VAT 09 ⭐ CASE</div>
+        <h1>Case Aromagic<br>mapa i decyzja VAT</h1>
+        <div class="byline">Zwieńczenie kursu · matryca klientów · bilans VAT · rekomendacja</div>
+      </section>
+
+      <section class="slide-section">
+        <div class="pill">09 · Aromagic</div>
+        <h2>Profil spółki</h2>
+        <p class="sub">SaaS dla liderów MLM doTERRA · start Q2 2026 · 35 krajów Europy</p>
+      </section>
+
+      <section>
+        <div class="pill">09 · Profil</div>
+        <h2>Aromagic w liczbach (rok 2, realistyczny)</h2>
+        <div class="content">
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number">588k zł</div>
+              <div class="stat-label">przychód ARR</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">54k</div>
+              <div class="stat-label">PL (9%)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">534k</div>
+              <div class="stat-label">non-PL (91%)</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">~907</div>
+              <div class="stat-label">płacących klientów</div>
+            </div>
+          </div>
+          <div class="accent-box" style="margin-top: 0.8em;">
+            <p><strong>Klienci:</strong> głównie B2C (Wellness Advocates MLM), ale <strong>20–35% to B2B</strong> w każdej geografii (liderzy z JDG/sp. z o.o., szkoleniowcy, coachowie).</p>
+          </div>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Ceny:</strong> 29 / 79 / 199 zł · 7 / 19 / 49 EUR — sprzedaż przez Stripe (hybryda 3-torowa)</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-section">
+        <div class="pill">09 · Mapa klientów</div>
+        <h2>Matryca 2D: geografia × typ klienta</h2>
+        <p class="sub">Kluczowa tabela kursu — dla każdego typu klienta: stawka, kto rozlicza, tor Stripe</p>
+      </section>
+
+      <section>
+        <div class="pill">09 · Mapa klientów</div>
+        <h2>Mapa klientów × stawek VAT (oba warianty Aromagic)</h2>
+        <div class="content">
+          <table style="font-size: 0.55em;">
+            <thead>
+              <tr><th>Typ klienta</th><th>Kraj VAT</th><th>Art. 113</th><th>VATowiec</th><th>Do 240k?</th><th>Tor</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>PL B2C</strong></td><td>PL</td><td>Bez VAT, 29 zł</td><td>+23% VAT (35,67 zł)</td><td>✅</td><td>Tor 1</td></tr>
+              <tr><td><strong>PL B2B z VAT</strong></td><td>PL</td><td>Bez VAT</td><td>+23% VAT, klient odlicza — neutralnie</td><td>✅</td><td>Tor 1</td></tr>
+              <tr><td><strong>PL B2B bez VAT</strong> (mała JDG)</td><td>PL</td><td>Bez VAT</td><td>+23% VAT, NIE odlicza — strata</td><td>✅</td><td>Tor 1</td></tr>
+              <tr><td><strong>UE B2B z VAT UE</strong></td><td>DE/AT/FR</td><td><strong>RC 0%</strong></td><td><strong>RC 0%</strong></td><td>❌</td><td>Tor 2</td></tr>
+              <tr><td><strong>UE B2B bez VAT UE</strong></td><td>DE Kleinunt.</td><td>Jak B2C → MoR</td><td>Jak B2C → MoR</td><td>❌</td><td>Tor 3</td></tr>
+              <tr><td><strong>UE B2C</strong></td><td>DE/FR/IT</td><td>MoR rozlicza DE VAT</td><td>MoR rozlicza DE VAT</td><td>❌</td><td>Tor 3</td></tr>
+              <tr><td><strong>Poza UE B2C</strong></td><td>UK/USA</td><td>MoR rozlicza lokalnie</td><td>MoR rozlicza lokalnie</td><td>❌</td><td>Tor 3</td></tr>
+              <tr><td><strong>Poza UE B2B</strong></td><td>USA firma</td><td>Eksport 0%</td><td>Eksport 0% + zwrot PL VAT</td><td>❌</td><td>Tor 2/3</td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Wniosek:</strong> Status VAT ma znaczenie TYLKO dla klientów PL. Dla B2B UE (VIES) + B2C UE (MoR) + poza UE → <span class="highlight-accent">niezależnie od statusu Aromagic</span>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-section">
+        <div class="pill">09 · Bilans VAT</div>
+        <h2>Kto ile traci / odzyskuje</h2>
+        <p class="sub">Konkretne liczby — art. 113 vs dobrowolna rejestracja VAT</p>
+      </section>
+
+      <section>
+        <div class="pill">09 · Koszty</div>
+        <h2>Koszty z VAT-em — co VATowiec odzyskuje</h2>
+        <div class="content">
+          <table style="font-size: 0.6em;">
+            <thead>
+              <tr><th>Kategoria</th><th>Koszt/rok</th><th>Art. 113 efektywny</th><th>VATowiec efektywny</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Stripe IE (prowizje)</td><td>15–30k</td><td>+23% do US = 18,5–36,9k</td><td>15–30k (zero-sum)</td></tr>
+              <tr><td>AWS IE / Narzędzia UE</td><td>9–18k</td><td>+23% = 11,1–22,1k</td><td>9–18k</td></tr>
+              <tr><td>Księgowość PL</td><td>4–8k</td><td>4,9–9,8k brutto</td><td>4–8k netto (+ 0,9–1,8k odliczasz)</td></tr>
+              <tr><td>Prawnicy PL (Paula Q2)</td><td>5–15k</td><td>6,2–18,5k brutto</td><td>5–15k (+ 1,1–3,5k)</td></tr>
+              <tr><td>Sprzęt / Marketing PL</td><td>8–30k</td><td>mieszane</td><td>odliczasz 1,5–4,5k</td></tr>
+            </tbody>
+          </table>
+          <div class="stats" style="margin-top: 0.8em;">
+            <div class="stat">
+              <div class="stat-number" style="color: #c44;">-8 do -21k</div>
+              <div class="stat-label">strata art. 113</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" style="color: var(--primary-dark);">+8 do +29k</div>
+              <div class="stat-label">przewaga VATowca</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">09 · Decyzja</div>
+        <h2>Wariant A — art. 113 + VAT-UE</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Pozycja</th><th>Wartość</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>VAT należny na klientach PL</td><td><strong>0 zł</strong> (zwolnienie)</td></tr>
+              <tr><td>VAT naliczony PL (nieodliczony)</td><td>−3k do −9,6k zł strata</td></tr>
+              <tr><td>VAT RC UE (nieodliczony)</td><td>−5,6k do −11,1k zł do US bez odliczenia</td></tr>
+              <tr><td>Koszty administracyjne</td><td>minimalne (VAT-UE miesięcznie)</td></tr>
+              <tr><td><strong>Łączna strata VAT</strong></td><td><strong style="color: #c44;">−8,6k do −20,7k zł/rok</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">09 · Decyzja</div>
+        <h2>Wariant B — dobrowolna rejestracja VAT</h2>
+        <div class="content">
+          <table>
+            <thead>
+              <tr><th>Pozycja</th><th>Wartość</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>VAT należny PL B2C (ceny bez zmian, zjadasz 23%)</td><td>−6,06k zł</td></tr>
+              <tr><td>VAT należny PL B2B VATowcy (neutralnie)</td><td>0 zł</td></tr>
+              <tr><td>VAT należny PL B2B nie-VATowcy</td><td>−1,21k zł</td></tr>
+              <tr><td>VAT należny non-PL B2C (MoR)</td><td>0 zł</td></tr>
+              <tr><td>VAT należny non-PL B2B (RC/eksport 0%)</td><td>0 zł</td></tr>
+              <tr><td>VAT naliczony PL — odliczasz</td><td>+3,3k do +9,6k zł</td></tr>
+              <tr><td>VAT RC UE — zero-sum</td><td>+5,6k do +11,1k (vs wariant A)</td></tr>
+              <tr><td>Koszty administracyjne</td><td>−2k do −4k zł</td></tr>
+              <tr><td><strong>Łączny bilans</strong></td><td><strong style="color: var(--primary-dark);">−0,4k do +8,2k zł/rok</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">09 · Decyzja</div>
+        <h2>Różnica między wariantami</h2>
+        <div class="content">
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number" style="color: #c44;">Wariant A</div>
+              <div class="stat-label">−8,6k do −20,7k</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" style="color: var(--secondary);">VS</div>
+              <div class="stat-label">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" style="color: var(--primary-dark);">Wariant B</div>
+              <div class="stat-label">−0,4k do +8,2k</div>
+            </div>
+          </div>
+          <div class="accent-box-secondary" style="margin-top: 0.8em;">
+            <p><strong>Przewaga wariantu B (VATowcem) o ~8–29k zł/rok.</strong> Przy 80% non-PL odliczenia dominują nad stratą na 23% PL B2C.</p>
+          </div>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>ALE:</strong> to szacunek. Jeśli PL B2C &gt; 70% PL → wariant A wygrywa. Jeśli koszty UE / PL wyższe → B jeszcze mocniej.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide-section">
+        <div class="pill">09 · Rekomendacja</div>
+        <h2>Plan w trzech fazach</h2>
+        <p class="sub">Start bezpiecznie, rewiduj na podstawie realnych liczb</p>
+      </section>
+
+      <section>
+        <div class="pill">09 · Rekomendacja</div>
+        <h2>Fazy planu</h2>
+        <div class="content">
+          <div class="cards-3">
+            <div class="card-soft">
+              <h3>Faza 1: Start</h3>
+              <p>Rok 1, do ~6 mies.</p>
+              <p><strong>Art. 113 + VAT-UE</strong></p>
+              <p>Hybryda 3-torowa Stripe</p>
+              <p>Zbieramy realne dane</p>
+              <p>Strata max ~20k akceptowalna</p>
+            </div>
+            <div class="card-secondary">
+              <h3>Faza 2: Rewizja</h3>
+              <p>Kwartalnie</p>
+              <p>Przejście na VAT gdy:</p>
+              <ul style="font-size: 0.85em;">
+                <li>Koszty PL z VAT &gt; 40k/rok</li>
+                <li>PL B2C &lt; 10% całości</li>
+                <li>B2B UE &gt; 50k/rok</li>
+                <li>Marketing PL &gt; 30k/rok</li>
+              </ul>
+            </div>
+            <div class="card-accent">
+              <h3>Faza 3: Obowiązek</h3>
+              <p>Gdy PL (Tor 1) &gt; 200k</p>
+              <p>Opcje:</p>
+              <ul style="font-size: 0.85em;">
+                <li>Dobrowolna rejestracja</li>
+                <li>Druga spółka (pilnuj GAAR)</li>
+                <li>Pełny MoR (−marża PL)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">09 · Monitoring</div>
+        <h2>Checklist wdrożeniowy</h2>
+        <div class="content">
+          <ul class="checklist">
+            <li><strong>Przy rejestracji spółki:</strong> VAT-UE (VAT-R pkt C.3) niezależnie od art. 113</li>
+            <li><strong>Konfiguracja:</strong> hybryda 3-torowa Stripe, VIES real-time w checkout</li>
+            <li><strong>Miesięcznie:</strong> alert przy 180k Tor 1, deklaracja VAT-UE do 25.</li>
+            <li><strong>Kwartalnie:</strong> rewizja decyzji A vs B, bilans VAT rzeczywisty, proporcje PL B2C/B2B/non-PL</li>
+            <li><strong>Rocznie:</strong> konsultacja doradcy (obowiązkowo), ewentualna interpretacja KIS</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <div class="pill">09 · Finalna ściągawka</div>
+        <h2>Quick reference dla Aromagic</h2>
+        <div class="content">
+          <table>
+            <tbody>
+              <tr><td>Czy VATowcem na start?</td><td><strong>Nie</strong> (art. 113), ale rejestrujesz VAT-UE</td></tr>
+              <tr><td>Kiedy przejść na VAT</td><td>Koszty PL z VAT &gt; 40k lub PL B2C &lt; 10% lub B2B UE &gt; 50k</td></tr>
+              <tr><td>Obowiązkowo VAT</td><td>Gdy PL (Tor 1) &gt; 200k zł/rok</td></tr>
+              <tr><td>Wlicza się do 240k</td><td><strong>Tylko Tor 1</strong></td></tr>
+              <tr><td>Strata na art. 113</td><td>~8–21k zł/rok</td></tr>
+              <tr><td>Zysk VATowcem</td><td>~8–29k zł/rok</td></tr>
+              <tr><td>Koszt admin VAT</td><td>+2–4k zł/rok</td></tr>
+              <tr><td>Monitor limitu PL</td><td>Alert przy 180k Tor 1</td></tr>
+              <tr><td>Interpretacja KIS</td><td>Przy obrocie &gt; 300k/rok</td></tr>
+            </tbody>
+          </table>
+          <div class="accent-box-accent" style="margin-top: 0.8em;">
+            <p><strong>Disclaimer:</strong> Plan minimum ryzyka — tracisz ~8–20k w roku 1, zyskujesz czas i elastyczność. Przed finalnymi decyzjami: konsultacja z doradcą podatkowym i księgową. Opcjonalnie: interpretacja KIS. Stan na 2026-04-22.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      width: 1920,
+      height: 1080,
+      margin: 0,
+      transition: 'slide',
+      touch: true,
+      center: true
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'd' || e.key === 'D') {
+        document.body.classList.toggle('debug-mode');
+      }
+    });
+  </script>
+</body>
+</html>
