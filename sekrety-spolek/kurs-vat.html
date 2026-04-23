@@ -317,6 +317,32 @@
       font-size: 1.2em;
     }
 
+    /* === CROSSLIST (minusy) === */
+    .crosslist {
+      list-style: none;
+      padding: 0;
+      margin: 0.5em 0;
+    }
+
+    .crosslist li {
+      position: relative;
+      padding-left: 1.8em;
+      margin-bottom: 0.5em;
+      font-size: 0.75em;
+    }
+
+    .crosslist li::before {
+      content: '';
+      position: absolute;
+      left: 0.15em;
+      top: 0.35em;
+      width: 0.85em;
+      height: 0.85em;
+      background:
+        linear-gradient(to top right, transparent 45%, #c44 45%, #c44 55%, transparent 55%),
+        linear-gradient(to top left,  transparent 45%, #c44 45%, #c44 55%, transparent 55%);
+    }
+
     /* === STEPS === */
     .steps {
       counter-reset: step;
@@ -1574,12 +1600,12 @@ Z MoR:
         <div class="pill">06 · MoR</div>
         <h2>Minusy</h2>
         <div class="content">
-          <ul class="checklist" style="list-style: none;">
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>Prowizja 5–8%</strong> — przy 500 klientach Aromagic: ~24k zł/rok</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Mniej kontroli nad checkout (branded limited, logo MoR)</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>CIT brutto vs netto</strong> — nierozstrzygnięte (ale matematycznie neutralne przy obrocie &lt;5 mln zł/rok)</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Refund flow trzeba synchronizować z CRM</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Lock-in — migracja MoR to miesiące pracy</li>
+          <ul class="crosslist">
+            <li><strong>Prowizja 5–8%</strong> — przy 500 klientach Aromagic: ~24k zł/rok</li>
+            <li>Mniej kontroli nad checkout (branded limited, logo MoR)</li>
+            <li><strong>CIT brutto vs netto</strong> — nierozstrzygnięte (ale matematycznie neutralne przy obrocie &lt;5 mln zł/rok)</li>
+            <li>Refund flow trzeba synchronizować z CRM</li>
+            <li>Lock-in — migracja MoR to miesiące pracy</li>
           </ul>
           <div class="accent-box-secondary" style="margin-top: 0.8em;">
             <p><strong>CIT brutto vs netto:</strong> matematycznie neutralne przy &lt;5 mln zł/rok (prowizja MoR jako KUP wyrównuje). Istotne dopiero gdy zbliżasz się do 2 mln EUR (~8,5 mln zł).</p>
@@ -1635,10 +1661,10 @@ Z MoR:
           <div class="accent-box-accent">
             <p>Jeśli wszyscy klienci idą przez MoR, <strong>polscy klienci też</strong>. Skutek:</p>
           </div>
-          <ul class="checklist" style="margin-top: 0.8em; list-style: none;">
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Tracisz zwolnienie art. 113 w praktyce — MoR dolicza 23% PL VAT do cen PL</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Tracisz ~5% prowizji na każdym PL kliencie niepotrzebnie</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> B2B UE z VIES niepotrzebnie przez MoR — RC bezpośrednio byłby prościej</li>
+          <ul class="crosslist" style="margin-top: 0.8em;">
+            <li>Tracisz zwolnienie art. 113 w praktyce — MoR dolicza 23% PL VAT do cen PL</li>
+            <li>Tracisz ~5% prowizji na każdym PL kliencie niepotrzebnie</li>
+            <li>B2B UE z VIES niepotrzebnie przez MoR — RC bezpośrednio byłby prościej</li>
           </ul>
           <div class="accent-box" style="margin-top: 0.8em;">
             <p><strong>Rozwiązanie:</strong> Stripe Managed Payments pozwala na flag per-session → <span class="highlight">dwa tryby równocześnie</span> na jednym koncie.</p>
