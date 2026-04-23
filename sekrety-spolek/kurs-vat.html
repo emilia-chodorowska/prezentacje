@@ -1546,7 +1546,7 @@ Z MoR:
               <tr><td><strong>Paddle</strong></td><td>5% + $0,50</td><td>UK</td><td>SaaS; <strong>brak "exclude PL"</strong></td></tr>
               <tr><td>FastSpring</td><td>5,9–8,9%</td><td>USA</td><td>Digital goods, B2C</td></tr>
               <tr><td>Lemon Squeezy</td><td>5% + $0,50</td><td>USA</td><td>Indie SaaS, startup-friendly</td></tr>
-              <tr><td><strong>Stripe Managed Payments</strong></td><td>~0,4–1% ekstra + std fee</td><td>Irlandia</td><td><strong>Najlepszy dla hybrydy</strong> (flag per-session)</td></tr>
+              <tr><td><strong>Stripe Managed Payments</strong></td><td><strong>+3,5%</strong> ponad standard (realnie 7,5–8% dla B2C EU)</td><td>Irlandia</td><td><strong>GA od 2026, PL eligible</strong> · flag per-session · tylko digital</td></tr>
               <tr><td>Gumroad</td><td>10%</td><td>USA</td><td>Digital products, kursy</td></tr>
             </tbody>
           </table>
@@ -1577,28 +1577,27 @@ Z MoR:
           <ul class="checklist" style="list-style: none;">
             <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>Prowizja 5–8%</strong> — przy 500 klientach Aromagic: ~24k zł/rok</li>
             <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Mniej kontroli nad checkout (branded limited, logo MoR)</li>
-            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>CIT brutto vs netto</strong> — nierozstrzygnięte; ustal z księgową</li>
+            <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> <strong>CIT brutto vs netto</strong> — nierozstrzygnięte (ale matematycznie neutralne przy obrocie &lt;5 mln zł/rok)</li>
             <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Refund flow trzeba synchronizować z CRM</li>
             <li style="padding-left: 1.8em; position: relative;"><span style="position: absolute; left: 0; color: #c44; font-weight: 700;">✗</span> Lock-in — migracja MoR to miesiące pracy</li>
           </ul>
           <div class="accent-box-secondary" style="margin-top: 0.8em;">
-            <p><strong>Problem CIT:</strong> przychód z MoR jako brutto = szybciej przekroczysz 2 mln EUR małego podatnika → 19% CIT zamiast 9%. Jako netto = lepiej.</p>
+            <p><strong>CIT brutto vs netto:</strong> matematycznie neutralne przy &lt;5 mln zł/rok (prowizja MoR jako KUP wyrównuje). Istotne dopiero gdy zbliżasz się do 2 mln EUR (~8,5 mln zł).</p>
           </div>
         </div>
       </section>
 
       <section>
         <div class="pill">06 · MoR</div>
-        <h2>Pułapka: klauzula GAAR</h2>
+        <h2>GAAR — teoretyczne ryzyko bez precedensów</h2>
         <div class="content">
           <div class="accent-box-accent">
-            <p><strong>Art. 119a Ordynacji podatkowej</strong> — organ może uznać, że rzeczywista sprzedaż jest do konsumenta, a MoR to "techniczny pośrednik", i zakwestionować RC.</p>
+            <p><strong>Art. 119a Ordynacji</strong> — teoretycznie organ mógłby zakwestionować RC. <strong>W praktyce na 2026: zero precedensów dla MoR w SaaS.</strong> MoR ma oczywiste uzasadnienie ekonomiczne (compliance w 80+ krajach).</p>
           </div>
           <ol class="steps" style="margin-top: 0.8em;">
             <li>Umowa ze Stripe MP formalnie czyni Stripe sprzedawcą (Stripe wystawia FV klientowi)</li>
             <li>Dokumentacja: ToS, mail od Stripe Sales, faktury za prowizję, payout reports</li>
-            <li><strong>Interpretacja KIS</strong> (40 zł + 2–4k doradca) przy obrocie &gt; ~300k/rok</li>
-            <li>Pozytywna interpretacja = spokój przy kontroli UCS</li>
+            <li><strong>Opcjonalna interpretacja KIS</strong> (120–200 zł urząd + 1,5–4k doradca) — nie pilna w fazie startupowej, rozważ przy obrocie &gt;300k/rok lub na życzenie</li>
           </ol>
         </div>
       </section>
@@ -1613,10 +1612,10 @@ Z MoR:
               <tr><td>Mechanizm prawny</td><td>RC (Aromagic→MoR) + B2C (MoR→klient)</td></tr>
               <tr><td>Top MoR dla SaaS</td><td>Paddle, Stripe MP, Lemon Squeezy</td></tr>
               <tr><td>Dla hybrydy PL/non-PL</td><td><strong>Stripe Managed Payments</strong></td></tr>
-              <tr><td>Prowizja</td><td>5–8% (Paddle) / 0,4–1% ekstra (Stripe MP)</td></tr>
+              <tr><td>Prowizja</td><td>5–8% (Paddle) / +3,5% ekstra (Stripe MP)</td></tr>
               <tr><td>Wlicza się do 240k?</td><td>NIE (reverse charge)</td></tr>
               <tr><td>Wymaga VATowcostwa?</td><td>NIE — można na art. 113</td></tr>
-              <tr><td>Interpretacja KIS</td><td>Rekomendowana przy &gt; 300k/rok</td></tr>
+              <tr><td>Interpretacja KIS</td><td>Opcjonalna; nie pilna w roku 1, rozważ w roku 2–3</td></tr>
             </tbody>
           </table>
         </div>
@@ -1745,11 +1744,11 @@ else:
           <div class="cards-2x2">
             <div class="card-accent">
               <h3>GAAR (art. 119a OP)</h3>
-              <p>Organ może zakwestionować RC. <strong>Mitygacja:</strong> interpretacja KIS, dokumentacja Stripe</p>
+              <p>Teoretyczne ryzyko — <strong>zero precedensów</strong> dla MoR w SaaS (2026). MoR ma oczywiste uzasadnienie ekonomiczne. Interpretacja KIS opcjonalna</p>
             </div>
             <div class="card-accent">
               <h3>CIT brutto vs netto</h3>
-              <p>Raportowanie MoR: ustal z księgową przed startem. Wpływa na limit 2 mln EUR</p>
+              <p>Nierozstrzygnięte, ale <strong>matematycznie neutralne &lt;5 mln zł/rok</strong> (prowizja MoR = KUP). Realnie istotne dopiero &gt;2 mln EUR</p>
             </div>
             <div class="card-accent">
               <h3>Refund flow</h3>
@@ -1790,7 +1789,7 @@ else:
               <tr><td>Wymaga rejestracji VAT?</td><td>NIE (art. 113 + VAT-UE OK)</td></tr>
               <tr><td>Wlicza się do 240k</td><td>Tylko Tor 1</td></tr>
               <tr><td>Monitor limitu PL</td><td>Alert przy 180k zł Tor 1</td></tr>
-              <tr><td>Interpretacja KIS</td><td>Rekomendowana &gt; 300k obrotu</td></tr>
+              <tr><td>Interpretacja KIS</td><td>Opcjonalna; rozważ w roku 2–3 lub &gt;300k obrotu</td></tr>
             </tbody>
           </table>
         </div>
@@ -2178,11 +2177,12 @@ Jeśli Korzyść > Koszt → rejestruj VAT.</div>
               <tr><td>Zysk VATowcem</td><td>~8–29k zł/rok</td></tr>
               <tr><td>Koszt admin VAT</td><td>+2–4k zł/rok</td></tr>
               <tr><td>Monitor limitu PL</td><td>Alert przy 180k Tor 1</td></tr>
-              <tr><td>Interpretacja KIS</td><td>Przy obrocie &gt; 300k/rok</td></tr>
+              <tr><td>Interpretacja KIS</td><td>Opcjonalna; nie pilna w roku 1, rozważ rok 2–3 przy obrocie &gt;300k</td></tr>
+              <tr><td>Budżet compliance rok 1</td><td>7–14k zł (biuro 6–12k + doradca 1–2k, ORD-IN na rok 2–3)</td></tr>
             </tbody>
           </table>
           <div class="accent-box-accent" style="margin-top: 0.8em;">
-            <p><strong>Disclaimer:</strong> Plan minimum ryzyka — tracisz ~8–20k w roku 1, zyskujesz czas i elastyczność. Przed finalnymi decyzjami: konsultacja z doradcą podatkowym i księgową. Opcjonalnie: interpretacja KIS. Stan na 2026-04-22.</p>
+            <p><strong>Disclaimer:</strong> Plan minimum ryzyka — tracisz ~8–20k w roku 1, zyskujesz czas i elastyczność. Przed finalnymi decyzjami: konsultacja z doradcą podatkowym i księgową. Stan na 2026-04-23 (po weryfikacji pułapek w sieci: GAAR bez precedensów, CIT brutto/netto neutralne &lt;5 mln zł/rok).</p>
           </div>
         </div>
       </section>
